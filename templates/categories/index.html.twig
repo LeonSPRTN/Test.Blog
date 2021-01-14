@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Категории
+{% endblock %}
+
+
+{% block body %}
+
+	<h2>Список публикаций по категориям</h2>
+	<table border="articles">
+
+		{% for category in categorys %}
+			<ul>
+				<li>{{ category.Name }}</li>
+
+				{% set articles = category.getArticles() %}
+
+				{% for article in articles %}
+					<ul>
+						<li><a href = "{{ path('blog', { id: article.id }) }}">{{ article.Name }}</a></li>
+					</ul>
+				{% endfor %}
+			</ul>
+		{% endfor %}
+
+	</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Блог -
+	{{ article }}
+{% endblock %}
+
+{% block body %}
+
+	<h4>Категории:
+		{{article.getCategory()}}
+	</h4>
+	<h1>{{ article }}
+		Блог от
+		{{article.getDate()|date('Y-m-d H:i:s')}}</h1>
+
+	<h2>Заголовок:
+		<i>{{article.getHeadline()}}</i>
+	</h2>
+
+	<p>
+		<output>{{article.getArticleText()}}</output>
+	</p>
+
+{% endblock %}

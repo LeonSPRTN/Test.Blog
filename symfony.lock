@@ -1,0 +1,11 @@
+{
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.2"
+    },
+    "symfony/orm-pack": {
+        "version": "v2.1.0"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.1.10"
+    }
+}

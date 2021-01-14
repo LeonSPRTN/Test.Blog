@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Блог
+{% endblock %}
+
+
+{% block body %}
+
+	<h2>Список публикаций</h2>
+	<table border="articles">
+		<tr>
+			<th>Название</th>
+			<th>Категория</th>
+		</tr>
+
+		{% for article in articles %}
+			<tr>
+				<th>
+					<a href="{{ path('blog', { id: article.id }) }}">{{ article.Name }}</a>
+				</th>
+				<th>{{ article.Category }}</th>
+			</tr>
+		{% endfor %}
+
+	</table>
+{% endblock %}
