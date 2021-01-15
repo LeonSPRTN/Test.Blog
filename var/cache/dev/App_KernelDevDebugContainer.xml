@@ -420,6 +420,9 @@
     <service id="App\Form\ArticlesFormType" class="App\Form\ArticlesFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\CategoryFormType" class="App\Form\CategoryFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Repository\ArticlesRepository" class="App\Repository\ArticlesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -871,6 +874,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\ArticlesFormType</argument>
+        <argument>App\Form\CategoryFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1225,7 +1229,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.TRg88_B"/>
+      <argument type="service" id=".service_locator.Cbc0gfA"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5087,6 +5091,8 @@
     <service id=".abstract.instanceof.App\EventSubscriber\TwigEventSubscriber" class="App\EventSubscriber\TwigEventSubscriber" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArticlesFormType" class="App\Form\ArticlesFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ArticlesFormType" class="App\Form\ArticlesFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategoryFormType" class="App\Form\CategoryFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CategoryFormType" class="App\Form\CategoryFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArticlesRepository" class="App\Repository\ArticlesRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ArticlesRepository" class="App\Repository\ArticlesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoriesRepository" class="App\Repository\CategoriesRepository" autowire="true" abstract="true"/>
@@ -5381,13 +5387,14 @@
         <argument key="categoriesRepository" type="service" id="App\Repository\CategoriesRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.egY.7pP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.fNuQmHY" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\BlogController::index" type="service" id=".service_locator.9HdXBLx"/>
         <argument key="App\Controller\BlogController::show" type="service" id=".service_locator._LLvGt6"/>
         <argument key="App\Controller\CategoriesController::index" type="service" id=".service_locator.UfZG8Zd"/>
-        <argument key="App\Controller\EasyAdminCustomController::index" type="service" id=".service_locator.9HdXBLx"/>
+        <argument key="App\Controller\EasyAdminCustomController::indexArticles" type="service" id=".service_locator.9HdXBLx"/>
+        <argument key="App\Controller\EasyAdminCustomController::indexCategory" type="service" id=".service_locator.UfZG8Zd"/>
         <argument key="App\Kernel::loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="App\Kernel::terminate" type="service" id=".service_locator.beq5mCo"/>
@@ -5397,7 +5404,8 @@
         <argument key="App\Controller\BlogController:index" type="service" id=".service_locator.9HdXBLx"/>
         <argument key="App\Controller\BlogController:show" type="service" id=".service_locator._LLvGt6"/>
         <argument key="App\Controller\CategoriesController:index" type="service" id=".service_locator.UfZG8Zd"/>
-        <argument key="App\Controller\EasyAdminCustomController:index" type="service" id=".service_locator.9HdXBLx"/>
+        <argument key="App\Controller\EasyAdminCustomController:indexArticles" type="service" id=".service_locator.9HdXBLx"/>
+        <argument key="App\Controller\EasyAdminCustomController:indexCategory" type="service" id=".service_locator.UfZG8Zd"/>
         <argument key="kernel:loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel:registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel:terminate" type="service" id=".service_locator.beq5mCo"/>
@@ -5462,10 +5470,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.TRg88_B" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Cbc0gfA" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ArticlesFormType" type="service" id="App\Form\ArticlesFormType"/>
+        <argument key="App\Form\CategoryFormType" type="service" id="App\Form\CategoryFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType" type="service" id="easyadmin.form.type.autocomplete"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminBatchFormType" type="service" id="easyadmin.form.type.batch"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminDividerType" type="service" id="easyadmin.form.type.divider"/>
@@ -5877,12 +5886,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.egY.7pP"/>
+      <argument type="service" id=".service_locator.fNuQmHY"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.egY.7pP"/>
+      <argument type="service" id=".service_locator.fNuQmHY"/>
     </service>
     <service id=".errored..service_locator.beq5mCo.Symfony\Component\HttpFoundation\Response" class="Symfony\Component\HttpFoundation\Response"/>
     <service id=".errored..service_locator.C9JCBPC.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
@@ -6275,7 +6284,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Form\Filter\FilterRegistry" alias="easyadmin.filter.registry" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.WaGDpDt" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.egY.7pP"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.fNuQmHY"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

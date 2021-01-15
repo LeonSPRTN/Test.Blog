@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Categories;
 use App\Form\ArticlesFormType;
+use App\Form\CategoryFormType;
 use App\Repository\ArticlesRepository;
+use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,14 +33,11 @@ class EasyAdminCustomController extends AbstractController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function indexArticles(ArticlesRepository $articlesRepository): Response
     {
-        $articles = new Articles();
-        $form = $this->createForm(ArticlesFormType::class, $articles);
-
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
             'articles' => $articlesRepository->findAll(),
-            'form_add_article' => $form->createView(),
+            'key' => 'articles',
         ]));
     }
 
@@ -52,6 +52,36 @@ class EasyAdminCustomController extends AbstractController
 
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
             'form_add_article' => $form->createView(),
+        ]));
+    }
+
+    /**
+     * @Route("/easyadmin-custom/categories", name="easy_admin_custom_categories")
+     * @param CategoriesRepository $categoriesRepository
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function indexCategory(CategoriesRepository $categoriesRepository): Response
+    {
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            'categories' => $categoriesRepository->findAll(),
+            'key' => 'categories',
+        ]));
+    }
+
+    /**
+     * @Route("/easyadmin-custom/categories-add", name="easy_admin_custom_categories-add")
+     * @return Response
+     */
+    public function categoryFormAdd(): Response
+    {
+        $categories = new Categories();
+        $form = $this->createForm(CategoryFormType::class, $categories);
+
+        return new Response($this->twig->render('easy_admin_custom/formAddCategory.html.twig', [
+            'form_add_category' => $form->createView(),
         ]));
     }
 }

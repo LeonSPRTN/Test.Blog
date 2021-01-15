@@ -11,36 +11,55 @@
     <h1>EasyAdmin Custom</h1>
 
     <a href="{{ path('easy_admin_custom') }}">Articles</a>
-    <a href="{{ path('easy_admin_custom') }}">Categories</a>
+    <a href="{{ path('easy_admin_custom_categories') }}">Categories</a>
 
     <h2>Articles</h2>
 
-    <input class="alert-info" type="button" value="Добавить Articles"
-           onclick="location.href='{{ path("easy_admin_custom_articles_add") }}'"/>
+    {% if key == 'articles' %}
+        <input class="alert-info" type="button" value="Добавить Articles"
+               onclick="location.href='{{ path("easy_admin_custom_articles_add") }}'"/>
 
-    <table>
-        <tr>
-            <th>Название</th>
-            <th>Загаловок</th>
-            <th>Категория</th>
-            <th>Дата</th>
-            <th>Текст</th>
-        </tr>
-
-        {% for article in articles %}
+        <table>
             <tr>
-                <th>{{ article.Name }}</th>
-                <th>{{ article.Headline }}</th>
-                <th>{{ article.Category }}</th>
-                <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
-                <th>{{ article.ArticleText }}</th>
-{#                Это доработать#}
-{#                <th><a href="{{ path('easy_admin_custom'), { id: article.id } }}">Изменить</a></th>#}
-{#                <th><a href="{{ path('easy_admin_custom'), { id: article.id } }}">Удалить</a></th>#}
+                <th>Название</th>
+                <th>Загаловок</th>
+                <th>Категория</th>
+                <th>Дата</th>
+                <th>Текст</th>
             </tr>
-        {% endfor %}
 
-    </table>
+            {% for article in articles %}
+                <tr>
+                    <th>{{ article.Name }}</th>
+                    <th>{{ article.Headline }}</th>
+                    <th>{{ article.Category }}</th>
+                    <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
+                    <th>{{ article.ArticleText }}</th>
+                    {# Это доработать #}
+                    {# <th><a href="{{ path('easy_admin_custom'), { id: article.id } }}">Изменить</a></th> #}
+                    {# <th><a href="{{ path('easy_admin_custom'), { id: article.id } }}">Удалить</a></th> #}
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    {% elseif key == 'categories' %}
+        <input class="alert-info" type="button" value="Добавить Categories"
+               onclick="location.href='{{ path("easy_admin_custom_categories-add") }}'"/>
+
+        <table>
+            <tr>
+                <th>Название</th>
+            </tr>
+
+            {% for category in categories %}
+                <tr>
+                    <th>{{ category.Name }}</th>
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% endif %}
 
     {% block javascripts %}
         {# <script  src="/public/js/EventJs.js"></script> #}

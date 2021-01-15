@@ -117,69 +117,116 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         echo "\">Articles</a>
     <a href=\"";
         // line 14
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_categories");
         echo "\">Categories</a>
 
     <h2>Articles</h2>
 
-    <input class=\"alert-info\" type=\"button\" value=\"Добавить Articles\"
-           onclick=\"location.href='";
-        // line 19
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_articles_add");
-        echo "'\"/>
+    ";
+        // line 18
+        if ((0 === twig_compare((isset($context["key"]) || array_key_exists("key", $context) ? $context["key"] : (function () { throw new RuntimeError('Variable "key" does not exist.', 18, $this->source); })()), "articles"))) {
+            // line 19
+            echo "        <input class=\"alert-info\" type=\"button\" value=\"Добавить Articles\"
+               onclick=\"location.href='";
+            // line 20
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_articles_add");
+            echo "'\"/>
 
-    <table>
-        <tr>
-            <th>Название</th>
-            <th>Загаловок</th>
-            <th>Категория</th>
-            <th>Дата</th>
-            <th>Текст</th>
-        </tr>
+        <table>
+            <tr>
+                <th>Название</th>
+                <th>Загаловок</th>
+                <th>Категория</th>
+                <th>Дата</th>
+                <th>Текст</th>
+            </tr>
 
-        ";
-        // line 30
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 30, $this->source); })()));
-        foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+            ";
             // line 31
-            echo "            <tr>
-                <th>";
-            // line 32
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Name", [], "any", false, false, false, 32), "html", null, true);
-            echo "</th>
-                <th>";
-            // line 33
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Headline", [], "any", false, false, false, 33), "html", null, true);
-            echo "</th>
-                <th>";
-            // line 34
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Category", [], "any", false, false, false, 34), "html", null, true);
-            echo "</th>
-                <th>";
-            // line 35
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "getDate", [], "method", false, false, false, 35), "Y-m-d H:i:s"), "html", null, true);
-            echo "</th>
-                <th>";
-            // line 36
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "ArticleText", [], "any", false, false, false, 36), "html", null, true);
-            echo "</th>
-";
-            // line 40
-            echo "            </tr>
-        ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
-        echo "
-    </table>
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 31, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+                // line 32
+                echo "                <tr>
+                    <th>";
+                // line 33
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Name", [], "any", false, false, false, 33), "html", null, true);
+                echo "</th>
+                    <th>";
+                // line 34
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Headline", [], "any", false, false, false, 34), "html", null, true);
+                echo "</th>
+                    <th>";
+                // line 35
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Category", [], "any", false, false, false, 35), "html", null, true);
+                echo "</th>
+                    <th>";
+                // line 36
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "getDate", [], "method", false, false, false, 36), "Y-m-d H:i:s"), "html", null, true);
+                echo "</th>
+                    <th>";
+                // line 37
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "ArticleText", [], "any", false, false, false, 37), "html", null, true);
+                echo "</th>
+                    ";
+                // line 39
+                echo "                    ";
+                // line 40
+                echo "                    ";
+                // line 41
+                echo "                </tr>
+            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 43
+            echo "
+        </table>
 
     ";
-        // line 45
+        } elseif ((0 === twig_compare(        // line 46
+(isset($context["key"]) || array_key_exists("key", $context) ? $context["key"] : (function () { throw new RuntimeError('Variable "key" does not exist.', 46, $this->source); })()), "categories"))) {
+            // line 47
+            echo "        <input class=\"alert-info\" type=\"button\" value=\"Добавить Categories\"
+               onclick=\"location.href='";
+            // line 48
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_categories-add");
+            echo "'\"/>
+
+        <table>
+            <tr>
+                <th>Название</th>
+            </tr>
+
+            ";
+            // line 55
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 55, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
+                // line 56
+                echo "                <tr>
+                    <th>";
+                // line 57
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "Name", [], "any", false, false, false, 57), "html", null, true);
+                echo "</th>
+                </tr>
+            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 60
+            echo "
+        </table>
+    ";
+        }
+        // line 63
+        echo "
+    ";
+        // line 64
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 48
+        // line 67
         echo "
 ";
         
@@ -190,7 +237,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
     }
 
-    // line 45
+    // line 64
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -200,9 +247,9 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 46
+        // line 65
         echo "        ";
-        // line 47
+        // line 66
         echo "    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -224,7 +271,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
     public function getDebugInfo()
     {
-        return array (  206 => 47,  204 => 46,  194 => 45,  183 => 48,  181 => 45,  176 => 42,  169 => 40,  165 => 36,  161 => 35,  157 => 34,  153 => 33,  149 => 32,  146 => 31,  142 => 30,  128 => 19,  120 => 14,  116 => 13,  111 => 10,  101 => 9,  90 => 6,  80 => 5,  61 => 3,  38 => 1,);
+        return array (  253 => 66,  251 => 65,  241 => 64,  230 => 67,  228 => 64,  225 => 63,  220 => 60,  211 => 57,  208 => 56,  204 => 55,  194 => 48,  191 => 47,  189 => 46,  184 => 43,  177 => 41,  175 => 40,  173 => 39,  169 => 37,  165 => 36,  161 => 35,  157 => 34,  153 => 33,  150 => 32,  146 => 31,  132 => 20,  129 => 19,  127 => 18,  120 => 14,  116 => 13,  111 => 10,  101 => 9,  90 => 6,  80 => 5,  61 => 3,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -242,36 +289,55 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
     <h1>EasyAdmin Custom</h1>
 
     <a href=\"{{ path('easy_admin_custom') }}\">Articles</a>
-    <a href=\"{{ path('easy_admin_custom') }}\">Categories</a>
+    <a href=\"{{ path('easy_admin_custom_categories') }}\">Categories</a>
 
     <h2>Articles</h2>
 
-    <input class=\"alert-info\" type=\"button\" value=\"Добавить Articles\"
-           onclick=\"location.href='{{ path(\"easy_admin_custom_articles_add\") }}'\"/>
+    {% if key == 'articles' %}
+        <input class=\"alert-info\" type=\"button\" value=\"Добавить Articles\"
+               onclick=\"location.href='{{ path(\"easy_admin_custom_articles_add\") }}'\"/>
 
-    <table>
-        <tr>
-            <th>Название</th>
-            <th>Загаловок</th>
-            <th>Категория</th>
-            <th>Дата</th>
-            <th>Текст</th>
-        </tr>
-
-        {% for article in articles %}
+        <table>
             <tr>
-                <th>{{ article.Name }}</th>
-                <th>{{ article.Headline }}</th>
-                <th>{{ article.Category }}</th>
-                <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
-                <th>{{ article.ArticleText }}</th>
-{#                Это доработать#}
-{#                <th><a href=\"{{ path('easy_admin_custom'), { id: article.id } }}\">Изменить</a></th>#}
-{#                <th><a href=\"{{ path('easy_admin_custom'), { id: article.id } }}\">Удалить</a></th>#}
+                <th>Название</th>
+                <th>Загаловок</th>
+                <th>Категория</th>
+                <th>Дата</th>
+                <th>Текст</th>
             </tr>
-        {% endfor %}
 
-    </table>
+            {% for article in articles %}
+                <tr>
+                    <th>{{ article.Name }}</th>
+                    <th>{{ article.Headline }}</th>
+                    <th>{{ article.Category }}</th>
+                    <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
+                    <th>{{ article.ArticleText }}</th>
+                    {# Это доработать #}
+                    {# <th><a href=\"{{ path('easy_admin_custom'), { id: article.id } }}\">Изменить</a></th> #}
+                    {# <th><a href=\"{{ path('easy_admin_custom'), { id: article.id } }}\">Удалить</a></th> #}
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    {% elseif key == 'categories' %}
+        <input class=\"alert-info\" type=\"button\" value=\"Добавить Categories\"
+               onclick=\"location.href='{{ path(\"easy_admin_custom_categories-add\") }}'\"/>
+
+        <table>
+            <tr>
+                <th>Название</th>
+            </tr>
+
+            {% for category in categories %}
+                <tr>
+                    <th>{{ category.Name }}</th>
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% endif %}
 
     {% block javascripts %}
         {# <script  src=\"/public/js/EventJs.js\"></script> #}

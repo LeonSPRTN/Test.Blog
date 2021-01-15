@@ -18,7 +18,9 @@ return [
     'homepage' => [[], ['_controller' => 'App\\Controller\\BlogController::index'], [], [['text', '/']], [], []],
     'blog' => [['id'], ['_controller' => 'App\\Controller\\BlogController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/blog']], [], []],
     'categories' => [[], ['_controller' => 'App\\Controller\\CategoriesController::index'], [], [['text', '/categories']], [], []],
-    'easy_admin_custom' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::index'], [], [['text', '/easyadmin-custom']], [], []],
+    'easy_admin_custom' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::indexArticles'], [], [['text', '/easyadmin-custom']], [], []],
     'easy_admin_custom_articles_add' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::articlesFromAdd'], [], [['text', '/easyadmin-custom/articles-add']], [], []],
+    'easy_admin_custom_categories' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::indexCategory'], [], [['text', '/easyadmin-custom/categories']], [], []],
+    'easy_admin_custom_categories-add' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::categoryFormAdd'], [], [['text', '/easyadmin-custom/categories-add']], [], []],
     'easyadmin' => [[], ['_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], [], [['text', '/admin/']], [], []],
 ];

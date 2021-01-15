@@ -93,7 +93,7 @@ class __TwigTemplate_18774807f09db903cf5e8eddb45ad93456cc9d00707c22087f8b3939acd
 \t\t";
         // line 12
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["categorys"]) || array_key_exists("categorys", $context) ? $context["categorys"] : (function () { throw new RuntimeError('Variable "categorys" does not exist.', 12, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 12, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
             // line 13
             echo "\t\t\t<ul>
@@ -173,7 +173,7 @@ class __TwigTemplate_18774807f09db903cf5e8eddb45ad93456cc9d00707c22087f8b3939acd
 \t<h2>Список публикаций по категориям</h2>
 \t<table border=\"articles\">
 
-\t\t{% for category in categorys %}
+\t\t{% for category in categories %}
 \t\t\t<ul>
 \t\t\t\t<li>{{ category.Name }}</li>
 

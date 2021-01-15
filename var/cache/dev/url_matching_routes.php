@@ -15,8 +15,10 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, false, false, null]],
         '/categories' => [[['_route' => 'categories', '_controller' => 'App\\Controller\\CategoriesController::index'], null, null, null, false, false, null]],
-        '/easyadmin-custom' => [[['_route' => 'easy_admin_custom', '_controller' => 'App\\Controller\\EasyAdminCustomController::index'], null, null, null, false, false, null]],
+        '/easyadmin-custom' => [[['_route' => 'easy_admin_custom', '_controller' => 'App\\Controller\\EasyAdminCustomController::indexArticles'], null, null, null, false, false, null]],
         '/easyadmin-custom/articles-add' => [[['_route' => 'easy_admin_custom_articles_add', '_controller' => 'App\\Controller\\EasyAdminCustomController::articlesFromAdd'], null, null, null, false, false, null]],
+        '/easyadmin-custom/categories' => [[['_route' => 'easy_admin_custom_categories', '_controller' => 'App\\Controller\\EasyAdminCustomController::indexCategory'], null, null, null, false, false, null]],
+        '/easyadmin-custom/categories-add' => [[['_route' => 'easy_admin_custom_categories-add', '_controller' => 'App\\Controller\\EasyAdminCustomController::categoryFormAdd'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'easyadmin', '_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], null, null, null, true, false, null]],
     ],
     [ // $regexpList
