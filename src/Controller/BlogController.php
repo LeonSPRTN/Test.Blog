@@ -8,11 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class BlogController extends AbstractController
 {
 
-    private $twig;
+    private Environment $twig;
 
     public function __construct(Environment $twig)
     {
@@ -21,6 +24,11 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/", name="homepage")
+     * @param ArticlesRepository $articlesRepository
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     #public function index(): Response
     public function index(ArticlesRepository $articlesRepository): Response
@@ -32,6 +40,11 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/blog/{id}", name="blog")
+     * @param Articles $articles
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function show(Articles $articles): Response
     {

@@ -1,34 +1,1 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}EasyAdmin Custom{% endblock %}
-
-{% block body %}
-
-    <input type="button" value="Добавить Articles" onclick="" />
-
-    <h1>Articles</h1>
-
-    {{ form(form_add_article) }}
-
-    <table>
-        <tr>
-            <th>Название</th>
-            <th>Категория</th>
-        </tr>
-
-        {#{% for article in articles %}
-            <tr>
-                <th>
-                    <a href="{{ path('blog', { id: article.id }) }}">{{ article.Name }}</a>
-                </th>
-                <th>{{ article.Category }}</th>
-            </tr>
-        {% endfor %}#}
-
-    </table>
-
-    {% block javascripts %}
-{#        <script  src="/public/js/EventJs.js"></script>#}
-    {% endblock %}
-
-{% endblock %}
+{% extends 'base.html.twig' %}{% block title %}EasyAdmin Custom{% endblock %}{% block body %}    <h1>Articles</h1>    <input type="button" value="Добавить Articles" onclick="" />    {{ form(form_add_article) }}    <table>        <tr>            <th>Название</th>            <th>Категория</th>        </tr>        {% for article in articles %}            <tr>                <th>                    <a href="{{ path('blog', { id: article.id }) }}">{{ article.Name }}</a>                </th>                <th>{{ article.Category }}</th>            </tr>        {% endfor %}    </table>    {% block javascripts %}{#        <script  src="/public/js/EventJs.js"></script>#}    {% endblock %}{% endblock %}

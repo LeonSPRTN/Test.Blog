@@ -87,13 +87,12 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
         // line 6
         echo "
-    <input type=\"button\" value=\"Добавить Articles\" onclick=\"\" />
-
     <h1>Articles</h1>
 
+    <input type=\"button\" value=\"Добавить Articles\" onclick=\"\" />
     ";
-        // line 11
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_add_article"]) || array_key_exists("form_add_article", $context) ? $context["form_add_article"] : (function () { throw new RuntimeError('Variable "form_add_article" does not exist.', 11, $this->source); })()), 'form');
+        // line 10
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_add_article"]) || array_key_exists("form_add_article", $context) ? $context["form_add_article"] : (function () { throw new RuntimeError('Variable "form_add_article" does not exist.', 10, $this->source); })()), 'form');
         echo "
 
     <table>
@@ -103,14 +102,38 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         </tr>
 
         ";
-        // line 27
+        // line 18
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 18, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+            // line 19
+            echo "            <tr>
+                <th>
+                    <a href=\"";
+            // line 21
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 21)]), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Name", [], "any", false, false, false, 21), "html", null, true);
+            echo "</a>
+                </th>
+                <th>";
+            // line 23
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "Category", [], "any", false, false, false, 23), "html", null, true);
+            echo "</th>
+            </tr>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 26
         echo "
     </table>
 
     ";
-        // line 30
+        // line 29
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 33
+        // line 32
         echo "
 ";
         
@@ -121,7 +144,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
     }
 
-    // line 30
+    // line 29
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -131,7 +154,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 32
+        // line 31
         echo "    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -153,45 +176,11 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
     public function getDebugInfo()
     {
-        return array (  135 => 32,  125 => 30,  114 => 33,  112 => 30,  107 => 27,  96 => 11,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
+        return array (  158 => 31,  148 => 29,  137 => 32,  135 => 29,  130 => 26,  121 => 23,  114 => 21,  110 => 19,  106 => 18,  95 => 10,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("{% extends 'base.html.twig' %}
-
-{% block title %}EasyAdmin Custom{% endblock %}
-
-{% block body %}
-
-    <input type=\"button\" value=\"Добавить Articles\" onclick=\"\" />
-
-    <h1>Articles</h1>
-
-    {{ form(form_add_article) }}
-
-    <table>
-        <tr>
-            <th>Название</th>
-            <th>Категория</th>
-        </tr>
-
-        {#{% for article in articles %}
-            <tr>
-                <th>
-                    <a href=\"{{ path('blog', { id: article.id }) }}\">{{ article.Name }}</a>
-                </th>
-                <th>{{ article.Category }}</th>
-            </tr>
-        {% endfor %}#}
-
-    </table>
-
-    {% block javascripts %}
-{#        <script  src=\"/public/js/EventJs.js\"></script>#}
-    {% endblock %}
-
-{% endblock %}
-", "easy_admin_custom/index.html.twig", "D:\\ProjectProgram\\Test.Blog\\templates\\easy_admin_custom\\index.html.twig");
+        return new Source("{% extends 'base.html.twig' %}{% block title %}EasyAdmin Custom{% endblock %}{% block body %}    <h1>Articles</h1>    <input type=\"button\" value=\"Добавить Articles\" onclick=\"\" />    {{ form(form_add_article) }}    <table>        <tr>            <th>Название</th>            <th>Категория</th>        </tr>        {% for article in articles %}            <tr>                <th>                    <a href=\"{{ path('blog', { id: article.id }) }}\">{{ article.Name }}</a>                </th>                <th>{{ article.Category }}</th>            </tr>        {% endfor %}    </table>    {% block javascripts %}{#        <script  src=\"/public/js/EventJs.js\"></script>#}    {% endblock %}{% endblock %}", "easy_admin_custom/index.html.twig", "D:\\ProjectProgram\\Test.Blog\\templates\\easy_admin_custom\\index.html.twig");
     }
 }

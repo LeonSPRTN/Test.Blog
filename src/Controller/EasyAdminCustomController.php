@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Form\ArticleFormType;
+use App\Entity\Articles;
+use App\Form\ArticlesFormType;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,18 +26,18 @@ class EasyAdminCustomController extends AbstractController
      * @Route("/easyadmin-custom", name="easy_admin_custom")
      * @param ArticlesRepository $articlesRepository
      * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function index(ArticlesRepository $articlesRepository): Response
     {
-        $form = $this->createForm(ArticleFormType::class, $articlesRepository);
+        $articles = new Articles();
+        $form = $this->createForm(ArticlesFormType::class, $articles);
 
-        try {
-            return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
-                //'articles' => $articlesRepository->findAll(),
-                'form_add_article' => $form->createView(),
-            ]));
-        } catch (LoaderError | RuntimeError | SyntaxError $e) {
-            return new Response($e);
-        }
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            'articles' => $articlesRepository->findAll(),
+            'form_add_article' => $form->createView(),
+        ]));
     }
 }
