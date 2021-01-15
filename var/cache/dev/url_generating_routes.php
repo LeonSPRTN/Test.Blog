@@ -19,5 +19,6 @@ return [
     'blog' => [['id'], ['_controller' => 'App\\Controller\\BlogController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/blog']], [], []],
     'categories' => [[], ['_controller' => 'App\\Controller\\CategoriesController::index'], [], [['text', '/categories']], [], []],
     'easy_admin_custom' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::index'], [], [['text', '/easyadmin-custom']], [], []],
+    'easy_admin_custom_articles_add' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::articlesFromAdd'], [], [['text', '/easyadmin-custom/articles-add']], [], []],
     'easyadmin' => [[], ['_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], [], [['text', '/admin/']], [], []],
 ];

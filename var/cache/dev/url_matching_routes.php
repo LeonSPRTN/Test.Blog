@@ -16,6 +16,7 @@ return [
         '/' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, false, false, null]],
         '/categories' => [[['_route' => 'categories', '_controller' => 'App\\Controller\\CategoriesController::index'], null, null, null, false, false, null]],
         '/easyadmin-custom' => [[['_route' => 'easy_admin_custom', '_controller' => 'App\\Controller\\EasyAdminCustomController::index'], null, null, null, false, false, null]],
+        '/easyadmin-custom/articles-add' => [[['_route' => 'easy_admin_custom_articles_add', '_controller' => 'App\\Controller\\EasyAdminCustomController::articlesFromAdd'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'easyadmin', '_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], null, null, null, true, false, null]],
     ],
     [ // $regexpList

@@ -40,4 +40,18 @@ class EasyAdminCustomController extends AbstractController
             'form_add_article' => $form->createView(),
         ]));
     }
+
+    /**
+     * @Route("/easyadmin-custom/articles-add", name="easy_admin_custom_articles_add")
+     * @return Response
+     */
+    public function articlesFromAdd(): Response
+    {
+        $articles = new Articles();
+        $form = $this->createForm(ArticlesFormType::class, $articles);
+
+        return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
+            'form_add_article' => $form->createView(),
+        ]));
+    }
 }

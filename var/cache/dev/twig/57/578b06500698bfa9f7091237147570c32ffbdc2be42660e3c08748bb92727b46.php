@@ -73,7 +73,10 @@ class __TwigTemplate_cbad8641e9e2c31764b11b4d50c409c19c155b32a30b748ec8f9a460b86
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("categories");
         echo "\">Категории</a>
                     <a href=\"/admin\">Админка</a>
-\t\t\t\t\t<a href=\"/easyadmin-custom\">Админка кастом</a>
+\t\t\t\t\t<a href=\"";
+        // line 20
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom");
+        echo "\">Админка кастом</a>
 \t\t\t\t</li>
 \t\t\t</ul>
 \t\t\t<hr/>
@@ -164,7 +167,7 @@ class __TwigTemplate_cbad8641e9e2c31764b11b4d50c409c19c155b32a30b748ec8f9a460b86
 
     public function getDebugInfo()
     {
-        return array (  136 => 26,  118 => 9,  98 => 6,  86 => 28,  84 => 26,  73 => 18,  66 => 14,  60 => 10,  58 => 9,  55 => 8,  53 => 6,  46 => 1,);
+        return array (  139 => 26,  121 => 9,  101 => 6,  89 => 28,  87 => 26,  78 => 20,  73 => 18,  66 => 14,  60 => 10,  58 => 9,  55 => 8,  53 => 6,  46 => 1,);
     }
 
     public function getSourceContext()
@@ -188,7 +191,7 @@ class __TwigTemplate_cbad8641e9e2c31764b11b4d50c409c19c155b32a30b748ec8f9a460b86
 \t\t\t\t<li>
                     <a href=\"{{ path('categories') }}\">Категории</a>
                     <a href=\"/admin\">Админка</a>
-\t\t\t\t\t<a href=\"/easyadmin-custom\">Админка кастом</a>
+\t\t\t\t\t<a href=\"{{ path('easy_admin_custom') }}\">Админка кастом</a>
 \t\t\t\t</li>
 \t\t\t</ul>
 \t\t\t<hr/>
