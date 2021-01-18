@@ -62,10 +62,10 @@ class EasyAdminCustomController extends AbstractController
             $manager->persist($articles);
             $manager->flush();
 
-            return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            return $this->redirectToRoute('easy_admin_custom', [
                 'articles' => $articlesRepository->findAll(),
                 'key' => 'articles',
-            ]));
+            ]);
         }
 
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
@@ -109,10 +109,10 @@ class EasyAdminCustomController extends AbstractController
             $manager->persist($categories);
             $manager->flush();
 
-            return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
-                'categories' => $categoriesRepository->findAll(),
+            return $this->redirectToRoute('easy_admin_custom_categories', [
+                'articles' => $categoriesRepository->findAll(),
                 'key' => 'categories',
-            ]));
+            ]);
         }
 
         return new Response($this->twig->render('easy_admin_custom/formAddCategory.html.twig', [

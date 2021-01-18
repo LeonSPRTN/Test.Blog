@@ -355,3 +355,14 @@ aec3c6,::1,GET,https://localhost:8000/easyadmin-custom/articles-add,1610966880,,
 1b6d34,::1,GET,https://localhost:8000/easyadmin-custom/articles-add,1610966960,,200
 e4975c,::1,POST,https://localhost:8000/easyadmin-custom/articles-add,1610966979,,200
 83beeb,::1,GET,https://localhost:8000/easyadmin-custom/articles-del-id6,1610967028,,200
+3b0616,::1,GET,https://localhost:8000/easyadmin-custom,1610968088,,200
+6e0c4a,::1,GET,https://localhost:8000/easyadmin-custom/articles-add,1610968091,,200
+2a7f29,::1,GET,https://localhost:8000/easyadmin-custom/articles-add,1610968103,39f2df,500
+39f2df,::1,POST,https://localhost:8000/easyadmin-custom/articles-add,1610968103,,500
+e2dbb5,::1,POST,https://localhost:8000/easyadmin-custom/articles-add,1610968163,,302
+650797,::1,GET,https://localhost:8000/easyadmin-custom?key=articles,1610968164,,200
+07b66e,::1,GET,https://localhost:8000/easyadmin-custom/articles-del-id8,1610968169,,200
+7d532b,::1,GET,https://localhost:8000/easyadmin-custom/categories,1610968285,,200
+426ffa,::1,GET,https://localhost:8000/easyadmin-custom/categories-add,1610968287,,200
+74a34d,::1,POST,https://localhost:8000/easyadmin-custom/categories-add,1610968292,,302
+e96d5c,::1,GET,https://localhost:8000/easyadmin-custom/categories?key=categories,1610968294,,200
