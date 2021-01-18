@@ -14,7 +14,6 @@ use Twig\Error\SyntaxError;
 
 class BlogController extends AbstractController
 {
-
     private Environment $twig;
 
     public function __construct(Environment $twig)
@@ -30,7 +29,6 @@ class BlogController extends AbstractController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    #public function index(): Response
     public function index(ArticlesRepository $articlesRepository): Response
     {
         return new Response($this->twig->render('blog/index.html.twig', [

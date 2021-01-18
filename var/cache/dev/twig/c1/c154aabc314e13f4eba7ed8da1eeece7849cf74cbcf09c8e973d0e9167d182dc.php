@@ -132,7 +132,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_articles_add");
             echo "'\"/>
 
-        <table>
+        <table border=\"1\">
             <tr>
                 <th>Название</th>
                 <th>Загаловок</th>
@@ -197,7 +197,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_categories-add");
             echo "'\"/>
 
-        <table>
+        <table border=\"1\">
             <tr>
                 <th>Название</th>
             </tr>
@@ -304,7 +304,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         <input class=\"alert-info\" type=\"button\" value=\"Добавить Articles\"
                onclick=\"location.href='{{ path(\"easy_admin_custom_articles_add\") }}'\"/>
 
-        <table>
+        <table border=\"1\">
             <tr>
                 <th>Название</th>
                 <th>Загаловок</th>
@@ -333,7 +333,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         <input class=\"alert-info\" type=\"button\" value=\"Добавить Categories\"
                onclick=\"location.href='{{ path(\"easy_admin_custom_categories-add\") }}'\"/>
 
-        <table>
+        <table border=\"1\">
             <tr>
                 <th>Название</th>
             </tr>

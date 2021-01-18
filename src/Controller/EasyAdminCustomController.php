@@ -9,6 +9,7 @@ use App\Form\CategoryFormType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
@@ -43,12 +44,29 @@ class EasyAdminCustomController extends AbstractController
 
     /**
      * @Route("/easyadmin-custom/articles-add", name="easy_admin_custom_articles_add")
+     * @param ArticlesRepository $articlesRepository
+     * @param Request $request
      * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function articlesFromAdd(): Response
+    public function articlesFromAdd(ArticlesRepository $articlesRepository, Request $request): Response
     {
         $articles = new Articles();
         $form = $this->createForm(ArticlesFormType::class, $articles);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($articles);
+            $manager->flush();
+
+            return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+                'articles' => $articlesRepository->findAll(),
+                'key' => 'articles',
+            ]));
+        }
 
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
             'form_add_article' => $form->createView(),
@@ -73,12 +91,29 @@ class EasyAdminCustomController extends AbstractController
 
     /**
      * @Route("/easyadmin-custom/categories-add", name="easy_admin_custom_categories-add")
+     * @param CategoriesRepository $categoriesRepository
+     * @param $request
      * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function categoryFormAdd(): Response
+    public function categoryFormAdd(CategoriesRepository $categoriesRepository, Request $request): Response
     {
         $categories = new Categories();
         $form = $this->createForm(CategoryFormType::class, $categories);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($categories);
+            $manager->flush();
+
+            return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+                'categories' => $categoriesRepository->findAll(),
+                'key' => 'categories',
+            ]));
+        }
 
         return new Response($this->twig->render('easy_admin_custom/formAddCategory.html.twig', [
             'form_add_category' => $form->createView(),
@@ -97,7 +132,6 @@ class EasyAdminCustomController extends AbstractController
     public function articleDelete(ArticlesRepository $articlesRepository, Articles $articles): Response
     {
         $manager = $this->getDoctrine()->getManager();
-//        $entity = $this->getDoctrine()->getRepository(Articles::class)->find($id);
         $manager->remove($articles);
         $manager->flush();
 
