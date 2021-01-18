@@ -168,29 +168,32 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
                 // line 37
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "ArticleText", [], "any", false, false, false, 37), "html", null, true);
                 echo "</th>
+                    <th><a href=\"";
+                // line 38
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_articles_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 38)]), "html", null, true);
+                echo "\">Удалить</a></th>
                     ";
-                // line 39
-                echo "                    ";
                 // line 40
                 echo "                    ";
                 // line 41
-                echo "                </tr>
+                echo "
+                </tr>
             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 43
+            // line 44
             echo "
         </table>
 
     ";
-        } elseif ((0 === twig_compare(        // line 46
-(isset($context["key"]) || array_key_exists("key", $context) ? $context["key"] : (function () { throw new RuntimeError('Variable "key" does not exist.', 46, $this->source); })()), "categories"))) {
-            // line 47
+        } elseif ((0 === twig_compare(        // line 47
+(isset($context["key"]) || array_key_exists("key", $context) ? $context["key"] : (function () { throw new RuntimeError('Variable "key" does not exist.', 47, $this->source); })()), "categories"))) {
+            // line 48
             echo "        <input class=\"alert-info\" type=\"button\" value=\"Добавить Categories\"
                onclick=\"location.href='";
-            // line 48
+            // line 49
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_categories-add");
             echo "'\"/>
 
@@ -200,33 +203,37 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
             </tr>
 
             ";
-            // line 55
+            // line 56
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 55, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 56, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-                // line 56
+                // line 57
                 echo "                <tr>
                     <th>";
-                // line 57
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "Name", [], "any", false, false, false, 57), "html", null, true);
+                // line 58
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "Name", [], "any", false, false, false, 58), "html", null, true);
                 echo "</th>
+                    <th><a href=\"";
+                // line 59
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("easy_admin_custom_category_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 59)]), "html", null, true);
+                echo "\">Удалить</a></th>
                 </tr>
             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 60
+            // line 62
             echo "
         </table>
     ";
         }
-        // line 63
+        // line 65
         echo "
     ";
-        // line 64
+        // line 66
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 67
+        // line 69
         echo "
 ";
         
@@ -237,7 +244,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
     }
 
-    // line 64
+    // line 66
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -247,9 +254,9 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 65
+        // line 67
         echo "        ";
-        // line 66
+        // line 68
         echo "    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -271,7 +278,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
 
     public function getDebugInfo()
     {
-        return array (  253 => 66,  251 => 65,  241 => 64,  230 => 67,  228 => 64,  225 => 63,  220 => 60,  211 => 57,  208 => 56,  204 => 55,  194 => 48,  191 => 47,  189 => 46,  184 => 43,  177 => 41,  175 => 40,  173 => 39,  169 => 37,  165 => 36,  161 => 35,  157 => 34,  153 => 33,  150 => 32,  146 => 31,  132 => 20,  129 => 19,  127 => 18,  120 => 14,  116 => 13,  111 => 10,  101 => 9,  90 => 6,  80 => 5,  61 => 3,  38 => 1,);
+        return array (  260 => 68,  258 => 67,  248 => 66,  237 => 69,  235 => 66,  232 => 65,  227 => 62,  218 => 59,  214 => 58,  211 => 57,  207 => 56,  197 => 49,  194 => 48,  192 => 47,  187 => 44,  179 => 41,  177 => 40,  173 => 38,  169 => 37,  165 => 36,  161 => 35,  157 => 34,  153 => 33,  150 => 32,  146 => 31,  132 => 20,  129 => 19,  127 => 18,  120 => 14,  116 => 13,  111 => 10,  101 => 9,  90 => 6,  80 => 5,  61 => 3,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -313,9 +320,10 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
                     <th>{{ article.Category }}</th>
                     <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
                     <th>{{ article.ArticleText }}</th>
+                    <th><a href=\"{{ path('easy_admin_custom_articles_delete', { id: article.id }) }}\">Удалить</a></th>
                     {# Это доработать #}
                     {# <th><a href=\"{{ path('easy_admin_custom'), { id: article.id } }}\">Изменить</a></th> #}
-                    {# <th><a href=\"{{ path('easy_admin_custom'), { id: article.id } }}\">Удалить</a></th> #}
+
                 </tr>
             {% endfor %}
 
@@ -333,6 +341,7 @@ class __TwigTemplate_adcea74339b51b4905ac696d2c8f69767c31c2103df481b5519f471ca01
             {% for category in categories %}
                 <tr>
                     <th>{{ category.Name }}</th>
+                    <th><a href=\"{{ path('easy_admin_custom_category_delete', { id: category.id }) }}\">Удалить</a></th>
                 </tr>
             {% endfor %}
 

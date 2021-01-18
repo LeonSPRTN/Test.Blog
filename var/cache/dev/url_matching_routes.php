@@ -39,6 +39,10 @@ return [
                     .')'
                 .')'
                 .'|/blog/([^/]++)(*:183)'
+                .'|/easyadmin\\-custom/(?'
+                    .'|articles\\-del\\-id([^/]++)(*:238)'
+                    .'|category\\-del\\-id([^/]++)(*:271)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -49,8 +53,10 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        183 => [
-            [['_route' => 'blog', '_controller' => 'App\\Controller\\BlogController::show'], ['id'], null, null, false, true, null],
+        183 => [[['_route' => 'blog', '_controller' => 'App\\Controller\\BlogController::show'], ['id'], null, null, false, true, null]],
+        238 => [[['_route' => 'easy_admin_custom_articles_delete', '_controller' => 'App\\Controller\\EasyAdminCustomController::articleDelete'], ['id'], null, null, false, true, null]],
+        271 => [
+            [['_route' => 'easy_admin_custom_category_delete', '_controller' => 'App\\Controller\\EasyAdminCustomController::categoryDelete'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

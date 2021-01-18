@@ -35,9 +35,10 @@
                     <th>{{ article.Category }}</th>
                     <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
                     <th>{{ article.ArticleText }}</th>
+                    <th><a href="{{ path('easy_admin_custom_articles_delete', { id: article.id }) }}">Удалить</a></th>
                     {# Это доработать #}
                     {# <th><a href="{{ path('easy_admin_custom'), { id: article.id } }}">Изменить</a></th> #}
-                    {# <th><a href="{{ path('easy_admin_custom'), { id: article.id } }}">Удалить</a></th> #}
+
                 </tr>
             {% endfor %}
 
@@ -55,6 +56,7 @@
             {% for category in categories %}
                 <tr>
                     <th>{{ category.Name }}</th>
+                    <th><a href="{{ path('easy_admin_custom_category_delete', { id: category.id }) }}">Удалить</a></th>
                 </tr>
             {% endfor %}
 

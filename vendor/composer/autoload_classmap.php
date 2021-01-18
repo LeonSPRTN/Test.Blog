@@ -12,6 +12,8 @@ return array(
     'App\\Entity\\Articles' => $baseDir . '/src/Entity/Articles.php',
     'App\\Entity\\Categories' => $baseDir . '/src/Entity/Categories.php',
     'App\\EventSubscriber\\TwigEventSubscriber' => $baseDir . '/src/EventSubscriber/TwigEventSubscriber.php',
+    'App\\Form\\ArticlesFormType' => $baseDir . '/src/Form/ArticlesFormType.php',
+    'App\\Form\\CategoryFormType' => $baseDir . '/src/Form/CategoryFormType.php',
     'App\\Kernel' => $baseDir . '/src/Kernel.php',
     'App\\Repository\\ArticlesRepository' => $baseDir . '/src/Repository/ArticlesRepository.php',
     'App\\Repository\\CategoriesRepository' => $baseDir . '/src/Repository/CategoriesRepository.php',

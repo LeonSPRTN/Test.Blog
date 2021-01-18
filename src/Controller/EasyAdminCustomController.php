@@ -84,4 +84,47 @@ class EasyAdminCustomController extends AbstractController
             'form_add_category' => $form->createView(),
         ]));
     }
+
+    /**
+     * @Route("/easyadmin-custom/articles-del-id{id}", name="easy_admin_custom_articles_delete")
+     * @param ArticlesRepository $articlesRepository
+     * @param Articles $articles
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function articleDelete(ArticlesRepository $articlesRepository, Articles $articles): Response
+    {
+        $manager = $this->getDoctrine()->getManager();
+//        $entity = $this->getDoctrine()->getRepository(Articles::class)->find($id);
+        $manager->remove($articles);
+        $manager->flush();
+
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            'articles' => $articlesRepository->findAll(),
+            'key' => 'articles',
+        ]));
+    }
+
+    /**
+     * @Route("/easyadmin-custom/category-del-id{id}", name="easy_admin_custom_category_delete")
+     * @param CategoriesRepository $categoriesRepository
+     * @param Categories $categories
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function categoryDelete(CategoriesRepository $categoriesRepository, Categories $categories): Response
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($categories);
+        $manager->flush();
+
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            'categories' => $categoriesRepository->findAll(),
+            'key' => 'categories',
+        ]));
+    }
 }

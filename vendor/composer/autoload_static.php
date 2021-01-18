@@ -533,6 +533,8 @@ class ComposerStaticInitcea8b624b1cf1052c1740e87c2c1f6bc
         'App\\Entity\\Articles' => __DIR__ . '/../..' . '/src/Entity/Articles.php',
         'App\\Entity\\Categories' => __DIR__ . '/../..' . '/src/Entity/Categories.php',
         'App\\EventSubscriber\\TwigEventSubscriber' => __DIR__ . '/../..' . '/src/EventSubscriber/TwigEventSubscriber.php',
+        'App\\Form\\ArticlesFormType' => __DIR__ . '/../..' . '/src/Form/ArticlesFormType.php',
+        'App\\Form\\CategoryFormType' => __DIR__ . '/../..' . '/src/Form/CategoryFormType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Repository\\ArticlesRepository' => __DIR__ . '/../..' . '/src/Repository/ArticlesRepository.php',
         'App\\Repository\\CategoriesRepository' => __DIR__ . '/../..' . '/src/Repository/CategoriesRepository.php',

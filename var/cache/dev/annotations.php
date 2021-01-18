@@ -83,15 +83,17 @@ return [[
 '%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CEasyAdminCustomController%23__construct%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%23__construct%5D%5B1%5D' => 2,
-'%5BApp%5CController%5CEasyAdminCustomController%23index%5D%5B1%5D' => 6,
-'%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%23index%5D%5B1%5D' => 2,
+'%5BApp%5CController%5CEasyAdminCustomController%23indexArticles%5D%5B1%5D' => 6,
+'%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%23indexArticles%5D%5B1%5D' => 2,
+'%5BApp%5CController%5CEasyAdminCustomController%23articlesFromAdd%5D%5B1%5D' => 7,
+'%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%23articlesFromAdd%5D%5B1%5D' => 2,
+'%5BApp%5CController%5CEasyAdminCustomController%23indexCategory%5D%5B1%5D' => 8,
+'%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%23indexCategory%5D%5B1%5D' => 2,
+'%5BApp%5CController%5CEasyAdminCustomController%23categoryFormAdd%5D%5B1%5D' => 9,
+'%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%23categoryFormAdd%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CEasyAdminCustomController%24twig%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CController%5CEasyAdminCustomController%24twig%5D%5B1%5D' => 2,
-'%5BApp%5CController%5Cform%5CFormArticlesController%5D%5B1%5D' => 1,
-'%5B%5BC%5DApp%5CController%5Cform%5CFormArticlesController%5D%5B1%5D' => 2,
-'%5BApp%5CController%5Cform%5CFormArticlesController%23new%5D%5B1%5D' => 1,
-'%5B%5BC%5DApp%5CController%5Cform%5CFormArticlesController%23new%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%5D%5B1%5D' => 7,
+'%5BApp%5CEntity%5CArticles%5D%5B1%5D' => 10,
 '%5B%5BC%5DApp%5CEntity%5CArticles%5D%5B1%5D' => 2,
 '%5BApp%5CEntity%5CArticles%23__toString%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CEntity%5CArticles%23__toString%5D%5B1%5D' => 2,
@@ -117,19 +119,19 @@ return [[
 '%5B%5BC%5DApp%5CEntity%5CArticles%23getCategory%5D%5B1%5D' => 2,
 '%5BApp%5CEntity%5CArticles%23setCategory%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CEntity%5CArticles%23setCategory%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%24id%5D%5B1%5D' => 8,
+'%5BApp%5CEntity%5CArticles%24id%5D%5B1%5D' => 11,
 '%5B%5BC%5DApp%5CEntity%5CArticles%24id%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%24Name%5D%5B1%5D' => 9,
+'%5BApp%5CEntity%5CArticles%24Name%5D%5B1%5D' => 12,
 '%5B%5BC%5DApp%5CEntity%5CArticles%24Name%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%24Headline%5D%5B1%5D' => 9,
+'%5BApp%5CEntity%5CArticles%24Headline%5D%5B1%5D' => 12,
 '%5B%5BC%5DApp%5CEntity%5CArticles%24Headline%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%24ArticleText%5D%5B1%5D' => 10,
+'%5BApp%5CEntity%5CArticles%24ArticleText%5D%5B1%5D' => 13,
 '%5B%5BC%5DApp%5CEntity%5CArticles%24ArticleText%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%24Date%5D%5B1%5D' => 11,
+'%5BApp%5CEntity%5CArticles%24Date%5D%5B1%5D' => 14,
 '%5B%5BC%5DApp%5CEntity%5CArticles%24Date%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CArticles%24Category%5D%5B1%5D' => 12,
+'%5BApp%5CEntity%5CArticles%24Category%5D%5B1%5D' => 15,
 '%5B%5BC%5DApp%5CEntity%5CArticles%24Category%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CCategories%5D%5B1%5D' => 13,
+'%5BApp%5CEntity%5CCategories%5D%5B1%5D' => 16,
 '%5B%5BC%5DApp%5CEntity%5CCategories%5D%5B1%5D' => 2,
 '%5BApp%5CEntity%5CCategories%23__construct%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CEntity%5CCategories%23__construct%5D%5B1%5D' => 2,
@@ -147,11 +149,11 @@ return [[
 '%5B%5BC%5DApp%5CEntity%5CCategories%23addArticle%5D%5B1%5D' => 2,
 '%5BApp%5CEntity%5CCategories%23removeArticle%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CEntity%5CCategories%23removeArticle%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CCategories%24id%5D%5B1%5D' => 8,
+'%5BApp%5CEntity%5CCategories%24id%5D%5B1%5D' => 11,
 '%5B%5BC%5DApp%5CEntity%5CCategories%24id%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CCategories%24Name%5D%5B1%5D' => 9,
+'%5BApp%5CEntity%5CCategories%24Name%5D%5B1%5D' => 12,
 '%5B%5BC%5DApp%5CEntity%5CCategories%24Name%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CCategories%24Articles%5D%5B1%5D' => 14,
+'%5BApp%5CEntity%5CCategories%24Articles%5D%5B1%5D' => 17,
 '%5B%5BC%5DApp%5CEntity%5CCategories%24Articles%5D%5B1%5D' => 2,
 '%5BDoctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%5D%5B1%5D' => 1,
 '%5B%5BC%5DDoctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%5D%5B1%5D' => 2,
@@ -585,7 +587,7 @@ return [[
 '%5B%5BC%5DDoctrine%5CORM%5CPersisters%5CEntity%5CSingleTablePersister%23generateFilterConditionSQL%5D%5B1%5D' => 2,
 '%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%5D%5B1%5D' => 1,
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%5D%5B1%5D' => 2,
-'%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%23indexAction%5D%5B1%5D' => 15,
+'%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%23indexAction%5D%5B1%5D' => 18,
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%23indexAction%5D%5B1%5D' => 2,
 '%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%23initialize%5D%5B1%5D' => 1,
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAdminControllerTrait%23initialize%5D%5B1%5D' => 2,
@@ -671,7 +673,7 @@ return [[
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%5D%5B1%5D' => 2,
 '%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23getSubscribedServices%5D%5B1%5D' => 1,
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23getSubscribedServices%5D%5B1%5D' => 2,
-'%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23indexAction%5D%5B1%5D' => 15,
+'%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23indexAction%5D%5B1%5D' => 18,
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23indexAction%5D%5B1%5D' => 2,
 '%5BEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23initialize%5D%5B1%5D' => 1,
 '%5B%5BC%5DEasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CEasyAdminController%23initialize%5D%5B1%5D' => 2,
@@ -866,7 +868,7 @@ return [[
 
 0 => 'N;',
 1 => [],
-2 => 1610617995,
+2 => 1610885032,
 3 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -958,6 +960,72 @@ return [[
 7 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/easyadmin-custom/articles-add',
+                ],
+                'name' => [
+                    'easy_admin_custom_articles_add',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+8 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/easyadmin-custom/categories',
+                ],
+                'name' => [
+                    'easy_admin_custom_categories',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+9 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/easyadmin-custom/categories-add',
+                ],
+                'name' => [
+                    'easy_admin_custom_categories-add',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+10 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
         ],
         null,
@@ -974,7 +1042,7 @@ return [[
         []
     );
 },
-8 => static function () {
+11 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Id'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Id')),
@@ -997,7 +1065,7 @@ return [[
         []
     );
 },
-9 => static function () {
+12 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
@@ -1016,7 +1084,7 @@ return [[
         []
     );
 },
-10 => static function () {
+13 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
@@ -1038,7 +1106,7 @@ return [[
         []
     );
 },
-11 => static function () {
+14 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
@@ -1057,7 +1125,7 @@ return [[
         []
     );
 },
-12 => static function () {
+15 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ManyToOne'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOne')),
@@ -1084,7 +1152,7 @@ return [[
         []
     );
 },
-13 => static function () {
+16 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
@@ -1103,7 +1171,7 @@ return [[
         []
     );
 },
-14 => static function () {
+17 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\OneToMany'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToMany')),
@@ -1125,7 +1193,7 @@ return [[
         []
     );
 },
-15 => static function () {
+18 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
