@@ -2,32 +2,42 @@
 
 namespace App\EventSubscriber;
 
-use App\Repository\ArticlesRepository;
+use mysql_xdevapi\Session;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\ControllerEvent;
-use Twig\Environment;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class TwigEventSubscriber implements EventSubscriberInterface
+class RequestSubscriber  implements EventSubscriberInterface
 {
+    use TargetPathTrait;
 
-    // private $twig;
-    // private $articlesRepository;
+    private SessionInterface $session;
 
-    public function __construct(Environment $twig, ArticlesRepository $articlesRepository)
+    public function __construct(SessionInterface $session)
     {
-        $this->twig = $twig;
-        $this->articlesRepository = $articlesRepository;
+        $this->session = $session;
     }
 
-    public function onControllerEvent(ControllerEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
-        // $this->twig->addGlobal('articles', $this->articlesRepository->findAll());
+        $request = $event->getRequest();
+        if (
+            !$event->isMasterRequest()
+            || $request->isXmlHttpRequest()
+            || 'app_login' === $request->attributes->get('_route')
+        ) {
+            return;
+        }
+
+        $this->saveTargetPath($this->session, 'main', $request->getUri());
     }
 
     public static function getSubscribedEvents()
     {
         return [
-            ControllerEvent::class => 'onControllerEvent',
+            KernelEvents::REQUEST => ['onKernelRequest']
         ];
     }
 }

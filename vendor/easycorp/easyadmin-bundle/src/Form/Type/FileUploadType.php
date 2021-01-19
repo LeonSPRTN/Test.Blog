@@ -16,6 +16,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Uid\Ulid;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @author Yonel Ceruto <yonelceruto@gmail.com>
@@ -83,12 +86,7 @@ class FileUploadType extends AbstractType implements DataMapperInterface
     public function configureOptions(OptionsResolver $resolver): void
     {
         $uploadNew = static function (UploadedFile $file, string $uploadDir, string $fileName) {
-            $name = str_replace('\\', '/', $fileName);
-            $pos = strrpos($name, '/');
-            $subDir = false === $pos ? '' : substr($name, 0, $pos);
-            $name = false === $pos ? $name : substr($name, $pos + 1);
-
-            $file->move(rtrim($uploadDir, '/\\').\DIRECTORY_SEPARATOR.$subDir, $name);
+            $file->move($uploadDir, $fileName);
         };
 
         $uploadDelete = static function (File $file) {
@@ -170,32 +168,26 @@ class FileUploadType extends AbstractType implements DataMapperInterface
 
             return $value;
         });
-        $resolver->setNormalizer('upload_filename', static function (Options $options, $value) {
-            if (\is_callable($value)) {
-                return $value;
+        $resolver->setNormalizer('upload_filename', static function (Options $options, $fileNamePatternOrCallable) {
+            if (\is_callable($fileNamePatternOrCallable)) {
+                return $fileNamePatternOrCallable;
             }
 
-            $generateUuid4 = static function () {
-                return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-                    random_int(0, 0xffff), random_int(0, 0xffff),
-                    random_int(0, 0xffff),
-                    random_int(0, 0x0fff) | 0x4000,
-                    random_int(0, 0x3fff) | 0x8000,
-                    random_int(0, 0xffff), random_int(0, 0xffff), random_int(0, 0xffff)
-                );
-            };
-
-            return static function (UploadedFile $file) use ($value, $generateUuid4) {
-                return strtr($value, [
+            return static function (UploadedFile $file) use ($fileNamePatternOrCallable) {
+                return strtr($fileNamePatternOrCallable, [
                     '[contenthash]' => sha1_file($file->getRealPath()),
                     '[day]' => date('d'),
                     '[extension]' => $file->guessClientExtension(),
                     '[month]' => date('m'),
                     '[name]' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
                     '[randomhash]' => bin2hex(random_bytes(20)),
-                    '[slug]' => transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)),
+                    '[slug]' => (new AsciiSlugger())
+                        ->slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME))
+                        ->lower()
+                        ->toString(),
                     '[timestamp]' => time(),
-                    '[uuid]' => $generateUuid4(),
+                    '[uuid]' => Uuid::v4()->toRfc4122(),
+                    '[ulid]' => new Ulid(),
                     '[year]' => date('Y'),
                 ]);
             };
@@ -214,7 +206,7 @@ class FileUploadType extends AbstractType implements DataMapperInterface
      */
     public function getBlockPrefix(): string
     {
-        return 'easyadmin_fileupload';
+        return 'ea_fileupload';
     }
 
     /**

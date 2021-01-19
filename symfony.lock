@@ -1,11 +1,32 @@
 {
+    "doctrine/data-fixtures": {
+        "version": "1.4.4"
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "e5b542d4ef47d8a003c91beb35650c76907f7e53"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.2"
     },
     "symfony/orm-pack": {
         "version": "v2.1.0"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.22.0"
+    },
     "symfony/proxy-manager-bridge": {
+        "version": "v5.1.10"
+    },
+    "symfony/uid": {
         "version": "v5.1.10"
     }
 }

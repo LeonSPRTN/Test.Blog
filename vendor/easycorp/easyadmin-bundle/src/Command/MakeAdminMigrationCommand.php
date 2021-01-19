@@ -2,94 +2,146 @@
 
 namespace EasyCorp\Bundle\EasyAdminBundle\Command;
 
-use EasyCorp\Bundle\EasyAdminBundle\Configuration\ConfigManager;
+use EasyCorp\Bundle\EasyAdminBundle\Maker\Migrator;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\ConsoleSectionOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Terminal;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * A command to save the EasyAdmin 2 configuration before migrating to EasyAdmin 3.
+ * A command to transform EasyAdmin 2 YAML configuration into the PHP files required by EasyAdmin 3.
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 class MakeAdminMigrationCommand extends Command
 {
     protected static $defaultName = 'make:admin:migration';
-    private $configManager;
+
+    public const SUCCESS = 0;
+    public const FAILURE = 1;
+
+    private $migrator;
     private $projectDir;
+    /** @var InputInterface */
+    private $input;
+    /** @var ConsoleSectionOutput */
+    private $progressSection;
+    private $progressSectionLines = [];
+    /** @var ConsoleSectionOutput */
+    private $temporarySection;
 
-    public function __construct(ConfigManager $configManager, string $projectDir)
+    public function __construct(Migrator $migrator, string $projectDir, string $name = null)
     {
-        parent::__construct();
-
-        $this->configManager = $configManager;
+        parent::__construct($name);
+        $this->migrator = $migrator;
         $this->projectDir = $projectDir;
     }
 
-    protected function configure()
+    public function configure()
     {
         $this
-            ->setDescription('Exports EasyAdmin 2 config to later migrate it to EasyAdmin 3 config.')
+            ->addArgument('ea2-backup-file', InputArgument::OPTIONAL, 'The path to the EasyAdmin 2 backup file you want to migrate from.')
         ;
     }
 
-    /**
-     * @return int
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('EasyAdmin 2 to EasyAdmin 3 Migration Assistant');
-        $io->text('This command will export your EasyAdmin 2 YAML configuration. Later, after upgrading to EasyAdmin 3, that configuration will be used to generate the new PHP code needed by EasyAdmin 3.');
-        $io->newLine();
+        $fs = new Filesystem();
 
-        $backendConfig = $this->configManager->getBackendConfig();
+        $this->input = $input;
+        $this->progressSection = $output->section();
+        $this->temporarySection = $output->section();
 
-        $backupDir = $this->getBackupDir($input, $output);
-        if (!is_dir($backupDir)) {
-            $io->error(sprintf('The given path ("%s") is not a directory or it doesn\'t exist. Create that directory or use another existing directory and then run this command again.', $backupDir));
+        $this->clearScreen($output);
+        $io->title('Migration from EasyAdmin2 to EasyAdmin 3');
 
-            return 1;
+        $this->addStep('<info>Step 1/3.</info> Find the file with the EasyAdmin 2 config backup.');
+        $ea2ConfigBackupPath = $input->getArgument('ea2-backup-file') ?: $this->projectDir.'/easyadmin-config.backup';
+
+        if (!$fs->exists($ea2ConfigBackupPath)) {
+            $this->temporarySection->write(sprintf(
+            '<error> ERROR </error> The config backup file was not found in %s. To generate this file, run the <comment>make:admin:migration</comment> command in your application BEFORE upgrading to EasyAdmin 3 (the command must be run while still using EasyAdmin 2).',
+            $ea2ConfigBackupPath
+            ));
         }
-
-        $backupFile = sprintf('%s/easyadmin-config.backup', $backupDir);
-        if (file_exists($backupFile)) {
-            $overwriteBackupFile = $io->confirm(sprintf('The backup file already exists ("%s"). Do you want to overwrite it?', $backupFile));
-            if (false === $overwriteBackupFile) {
-                $io->text('<bg=yellow> OK </> If you still want to backup the EasyAdmin 2 config, delete or rename the previous backup file or select a different backup directory and run this command again.');
-
-                return 0;
-            }
+        while (!$fs->exists($ea2ConfigBackupPath)) {
+            $ea2ConfigBackupPath = $this->askQuestion('Absolute path of <comment>easyadmin-config.backup</comment> file:');
         }
+        $this->temporarySection->write(sprintf('<bg=green;fg=black> OK </> The backup file was found at "%s"', $ea2ConfigBackupPath));
+        $ea2Config = unserialize(file_get_contents($ea2ConfigBackupPath), ['allowed_classes' => false]);
 
-        (new Filesystem())->dumpFile($backupFile, serialize($backendConfig));
+        $this->askQuestion('Press <comment>\<Enter></comment> to continue...');
+        $this->addStep(sprintf('<bg=green;fg=black> OK </> The backup file was found at "%s"', $ea2ConfigBackupPath));
+        $this->temporarySection->clear();
 
-        $io->success(sprintf('The config backup was saved in "%s"', $backupFile));
+        $this->addStep('');
+        $this->addStep('<info>Step 2/3.</info> Select the directory where the new PHP files will be generated.');
 
-        $io->section('What\'s next?');
-        $io->listing([
-            "1) Update the <info>easycorp/easyadmin-bundle</> dependency to <info>^3.0</> in your <info>composer.json</> file.\n",
-            "2) Run the <info>composer update easycorp/easyadmin-bundle</> command to update EasyAdmin (or run just <info>composer update</> to update all dependencies).\n",
-            "3) Depending on your project config, you may see some errors after upgrading. They are caused by config files which still reference old EasyAdmin 2 files (such as 'EasyAdminController'). Comment that config or remove those files because you won\'t need them anymore.\n",
-            "4) If you need help, read https://symfony.com/doc/master/bundles/EasyAdminBundle/upgrade.html or visit the #easyadminbundle channel on https://symfony.com/slack\n",
-            '5) Once all issues are fixed, run this exact command again in your project to generate the EasyAdmin 3 files using the EasyAdmin 2 config backup.',
-        ]);
+        $this->temporarySection->write(sprintf('Type the relative path from your project directory, which is: %s', $this->projectDir));
+        $relativeOutputDir = $this->askQuestion('Directory [<comment>src/Controller/Admin/</comment>]:', 'src/Controller/Admin');
 
-        return 0;
+        $outputDir = $this->projectDir.'/'.ltrim($relativeOutputDir, '/');
+        $fs->mkdir($outputDir);
+        if (!$fs->exists($outputDir)) {
+            $this->temporarySection->clear();
+            $this->temporarySection->write(sprintf('<error> ERROR </error> The "%s" directory does not exist and cannot be created, so the PHP files cannot be generated.', $outputDir));
+
+            return self::FAILURE;
+        }
+        $this->addStep(sprintf('<bg=green;fg=black> OK </> Output dir = "%s"', $outputDir));
+        $this->temporarySection->clear();
+
+        $this->addStep('');
+        $this->addStep('<info>Step 3/3.</info> Define the namespace of the new PHP files that will be generated.');
+        $namespace = $this->askQuestion('Namespace [<comment>App\\Controller\\Admin</comment>]:', 'App\\Controller\\Admin');
+
+        $namespace = str_replace('/', '\\', $namespace);
+        $this->addStep(sprintf('<bg=green;fg=black> OK </> Namespace = "%s"', $namespace));
+        $this->temporarySection->clear();
+
+        $this->migrator->migrate($ea2Config, $outputDir, $namespace, $this->temporarySection);
+
+        $this->temporarySection->write('');
+        $io->success(sprintf('The migration completed successfully. You can find the generated files at "%s".', $relativeOutputDir));
+
+        return self::SUCCESS;
     }
 
-    private function getBackupDir(InputInterface $input, OutputInterface $output): string
+    private function clearScreen(OutputInterface $output): void
     {
-        $defaultBackupDir = realpath($this->projectDir);
+        // clears the entire screen
+        $output->write("\x1b[2J");
+        // moves cursor to top left position
+        $output->write("\x1b[1;1H");
+    }
+
+    private function addStep(string $newLine): void
+    {
+        $this->progressSectionLines[] = $newLine;
+        $this->progressSection->clear();
+
+        $terminal = new Terminal();
+
+        foreach ($this->progressSectionLines as $line) {
+            $this->progressSection->write($line);
+        }
+
+        $this->progressSection->write('');
+        $this->progressSection->write(str_repeat('━', $terminal->getWidth()));
+        $this->progressSection->write('');
+    }
+
+    private function askQuestion(string $questionText, $defaultAnswer = null)
+    {
         $helper = $this->getHelper('question');
-        $question = new Question(sprintf(" <info>In which directory do you want to store the config backup?</>\n <comment>[default: %s]</>\n > ", $defaultBackupDir), $defaultBackupDir);
+        $question = new Question($questionText, $defaultAnswer);
 
-        $backupDir = $helper->ask($input, $output, $question);
-        $output->writeln('');
-
-        return $backupDir;
+        return $helper->ask($this->input, $this->temporarySection, $question);
     }
 }

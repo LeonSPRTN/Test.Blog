@@ -19,7 +19,8 @@ return [
         '/easyadmin-custom/articles-add' => [[['_route' => 'easy_admin_custom_articles_add', '_controller' => 'App\\Controller\\EasyAdminCustomController::articlesFromAdd'], null, null, null, false, false, null]],
         '/easyadmin-custom/categories' => [[['_route' => 'easy_admin_custom_categories', '_controller' => 'App\\Controller\\EasyAdminCustomController::indexCategory'], null, null, null, false, false, null]],
         '/easyadmin-custom/categories-add' => [[['_route' => 'easy_admin_custom_categories-add', '_controller' => 'App\\Controller\\EasyAdminCustomController::categoryFormAdd'], null, null, null, false, false, null]],
-        '/admin' => [[['_route' => 'easyadmin', '_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], null, null, null, true, false, null]],
+        '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

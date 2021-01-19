@@ -3,4 +3,5 @@ easy_admin:
         # List the entity class name you want to manage
         - App\Entity\Articles
         - App\Entity\Categories
+        - App\Entity\User
 

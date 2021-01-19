@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'aa85170650779c2cda14e77bdc20630153622ad1',
+    'reference' => '9d1f7460fcd771bf0a2a60244576ed1ece880a9c',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'aa85170650779c2cda14e77bdc20630153622ad1',
+      'reference' => '9d1f7460fcd771bf0a2a60244576ed1ece880a9c',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -88,6 +88,15 @@ private static $installed = array (
       ),
       'reference' => '9f3e3f3cc5399604c0325d5ffa92609d694d950d',
     ),
+    'doctrine/data-fixtures' => 
+    array (
+      'pretty_version' => '1.4.4',
+      'version' => '1.4.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '16a03fadb5473f49aad70384002dfd5012fe680e',
+    ),
     'doctrine/dbal' => 
     array (
       'pretty_version' => '2.12.1',
@@ -105,6 +114,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '044d33eeffdb236d5013b6b4af99f87519e10751',
+    ),
+    'doctrine/doctrine-fixtures-bundle' => 
+    array (
+      'pretty_version' => '3.4.0',
+      'version' => '3.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '870189619a7770f468ffb0b80925302e065a3b34',
     ),
     'doctrine/doctrine-migrations-bundle' => 
     array (
@@ -189,12 +207,12 @@ private static $installed = array (
     ),
     'easycorp/easyadmin-bundle' => 
     array (
-      'pretty_version' => 'v2.3.11',
-      'version' => '2.3.11.0',
+      'pretty_version' => 'v3.2.1',
+      'version' => '3.2.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '34f70c9e89ba9a0dda78b993347ffbd152d6c588',
+      'reference' => 'c0e76dfdda75bccedf5b691c5f0349e70427625d',
     ),
     'friendsofphp/proxy-manager-lts' => 
     array (
@@ -262,78 +280,6 @@ private static $installed = array (
       'replaced' => 
       array (
         0 => '^2.1',
-      ),
-    ),
-    'pagerfanta/core' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/doctrine-collections-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/doctrine-dbal-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/doctrine-mongodb-odm-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/doctrine-orm-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/doctrine-phpcr-odm-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/elastica-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/pagerfanta' => 
-    array (
-      'pretty_version' => 'v2.5.1',
-      'version' => '2.5.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '92138595c5cb65e517e49f6fee71b89da134509e',
-    ),
-    'pagerfanta/solarium-adapter' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
-      ),
-    ),
-    'pagerfanta/twig' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v2.5.1',
       ),
     ),
     'paragonie/random_compat' => 
@@ -555,15 +501,6 @@ private static $installed = array (
         0 => '2.0',
       ),
     ),
-    'symfony/expression-language' => 
-    array (
-      'pretty_version' => 'v5.1.10',
-      'version' => '5.1.10.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '70ced958a50abbfb9e6a260fb2c60c8163021665',
-    ),
     'symfony/filesystem' => 
     array (
       'pretty_version' => 'v5.1.10',
@@ -777,6 +714,15 @@ private static $installed = array (
       ),
       'reference' => 'dc3063ba22c2a1fd2f45ed856374d79114998f91',
     ),
+    'symfony/polyfill-uuid' => 
+    array (
+      'pretty_version' => 'v1.22.0',
+      'version' => '1.22.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '17e0611d2e180a91d02b4fa8b03aab0368b661bc',
+    ),
     'symfony/property-access' => 
     array (
       'pretty_version' => 'v5.1.10',
@@ -934,6 +880,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'c06696b0784da4d45087fb6ead8054fb100079e6',
+    ),
+    'symfony/uid' => 
+    array (
+      'pretty_version' => 'v5.1.10',
+      'version' => '5.1.10.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f5d629b4736481aebe8886766534b6008ab0d250',
     ),
     'symfony/validator' => 
     array (

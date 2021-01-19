@@ -76,7 +76,7 @@ class StringToFileTransformer implements DataTransformerInterface
         }
 
         if (\is_string($value)) {
-            return new File($value);
+            return new File($this->uploadDir.$value);
         }
 
         throw new TransformationFailedException('Expected a string or null.');
@@ -93,13 +93,13 @@ class StringToFileTransformer implements DataTransformerInterface
                 throw new TransformationFailedException($value->getErrorMessage());
             }
 
-            $filename = $this->uploadDir.($this->uploadFilename)($value);
+            $filename = ($this->uploadFilename)($value);
 
             return ($this->uploadValidate)($filename);
         }
 
         if ($value instanceof File) {
-            return $value->getPathname();
+            return $value->getFilename();
         }
 
         throw new TransformationFailedException('Expected an instance of File or null.');

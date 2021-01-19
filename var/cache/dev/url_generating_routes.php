@@ -24,5 +24,6 @@ return [
     'easy_admin_custom_categories-add' => [[], ['_controller' => 'App\\Controller\\EasyAdminCustomController::categoryFormAdd'], [], [['text', '/easyadmin-custom/categories-add']], [], []],
     'easy_admin_custom_articles_delete' => [['id'], ['_controller' => 'App\\Controller\\EasyAdminCustomController::articleDelete'], [], [['variable', '', '[^/]++', 'id', true], ['text', '/easyadmin-custom/articles-del-id']], [], []],
     'easy_admin_custom_category_delete' => [['id'], ['_controller' => 'App\\Controller\\EasyAdminCustomController::categoryDelete'], [], [['variable', '', '[^/]++', 'id', true], ['text', '/easyadmin-custom/category-del-id']], [], []],
-    'easyadmin' => [[], ['_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], [], [['text', '/admin/']], [], []],
+    'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+    'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
 ];
