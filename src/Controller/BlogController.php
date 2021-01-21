@@ -22,7 +22,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="app_homepage")
      * @param ArticlesRepository $articlesRepository
      * @return Response
      * @throws LoaderError

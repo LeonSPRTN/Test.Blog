@@ -11,13 +11,21 @@
 	<body>
 		<header>
 			<h1>
-				<a href="{{ path('homepage') }}">Домашняя страница</a>
+				<a href="{{ path('app_homepage') }}">Домашняя страница</a>
 			</h1>
 			<ul>
 				<li>
                     <a href="{{ path('categories') }}">Категории</a>
                     <a href="/admin">Админка</a>
 					<a href="{{ path('easy_admin_custom') }}">Админка кастом</a>
+					{% if app.user %}
+						<div class="mb-3">
+							Вы вошли как {{ app.user.username }}, <a href="{{ path('app_logout') }}">Выйти</a>
+						</div>
+					{% else %}
+						<a href="{{ path('app_login') }}">Войти</a>
+					{% endif %}
+
 				</li>
 			</ul>
 			<hr/>
