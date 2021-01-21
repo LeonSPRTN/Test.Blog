@@ -8,10 +8,17 @@
 
     <h1>Добавить Articles</h1>
 
-    {{ form(form_add_article) }}
+    {{ form_start(form_add_article) }}
+    {{ form_widget(form_add_article) }}
+    {% if add != 'false' %}
+        <button type="submit">Добавить</button>
+    {% else %}
+        <button type="button" onclick="updateArticle()">Добавить</button>
+    {% endif %}
+    {{ form_end(form_add_article) }}
 
     {% block javascripts %}
-
+        <script src="{{ asset('js/eventFormUpdateRecord.js') }}"></script>
     {% endblock %}
 
 {% endblock %}

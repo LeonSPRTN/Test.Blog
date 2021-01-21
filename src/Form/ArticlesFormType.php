@@ -30,8 +30,8 @@ class ArticlesFormType extends AbstractType
             ))
             ->add('Category', null, array(
                 'label'=> 'Категория: '
-            ))
-            ->add('Add', SubmitType::class, array('label'=>'Добавить'));
+            ));
+            //->add('Add', SubmitType::class, array('label'=>'Добавить'));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -8,6 +8,7 @@ use App\Form\ArticlesFormType;
 use App\Form\CategoryFormType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoriesRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,6 +71,7 @@ class EasyAdminCustomController extends AbstractController
 
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
             'form_add_article' => $form->createView(),
+            'add' => 'true',
         ]));
     }
 
@@ -117,11 +119,12 @@ class EasyAdminCustomController extends AbstractController
 
         return new Response($this->twig->render('easy_admin_custom/formAddCategory.html.twig', [
             'form_add_category' => $form->createView(),
+            'add' => 'true',
         ]));
     }
 
     /**
-     * @Route("/easyadmin-custom/articles-del-id{id}", name="easy_admin_custom_articles_delete")
+     * @Route("/easyadmin-custom/articles-del-id-{id}", name="easy_admin_custom_articles_delete")
      * @param ArticlesRepository $articlesRepository
      * @param Articles $articles
      * @return Response
@@ -142,7 +145,7 @@ class EasyAdminCustomController extends AbstractController
     }
 
     /**
-     * @Route("/easyadmin-custom/category-del-id{id}", name="easy_admin_custom_category_delete")
+     * @Route("/easyadmin-custom/category-del-id-{id}", name="easy_admin_custom_category_delete")
      * @param CategoriesRepository $categoriesRepository
      * @param Categories $categories
      * @return Response
@@ -159,6 +162,41 @@ class EasyAdminCustomController extends AbstractController
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
             'categories' => $categoriesRepository->findAll(),
             'key' => 'categories',
+        ]));
+    }
+
+    /**
+     * @Route("/easyadmin-custom/article-update-{id}", name="easy_admin_custom_article_update")
+     * @param Articles $articles
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function articleUpdate(Articles $articles): Response
+    {
+        $form = $this->createForm(ArticlesFormType::class, $articles);
+
+        return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
+            'form_add_article' => $form->createView(),
+            'add' => 'false',
+        ]));
+    }
+
+    /**
+     * @Route("/easyadmin-custom/category-update-{id}", name="easy_admin_custom_category_update")
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function categoryUpdate(Categories $categories): Response
+    {
+        $form = $this->createForm(CategoryFormType::class, $categories);
+
+        return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
+            'form_add_article' => $form->createView(),
+            'add' => 'false',
         ]));
     }
 }

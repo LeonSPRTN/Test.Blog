@@ -1,9 +1,9 @@
 "use strict";
 
-function updateCategory(id){
+function updateCategory() {
 
 }
 
-function updateArticle(id){
+function updateArticle() {
 
 }
