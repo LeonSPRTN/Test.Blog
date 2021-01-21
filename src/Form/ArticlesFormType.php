@@ -16,11 +16,21 @@ class ArticlesFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Name', TextType::class)
-            ->add('Headline', TextType::class)
-            ->add('ArticleText', TextareaType::class)
-            ->add('Date', DateType::class)
-            ->add('Category')
+            ->add('Name', TextType::class, array(
+                'label'=> 'Наименование: '
+            ))
+            ->add('Headline', TextType::class, array(
+                'label'=> 'Заголовок: '
+            ))
+            ->add('ArticleText', TextareaType::class, array(
+                'label'=> 'Текст: '
+            ))
+            ->add('Date', DateType::class, array(
+                'label'=> 'Дата: '
+            ))
+            ->add('Category', null, array(
+                'label'=> 'Категория: '
+            ))
             ->add('Add', SubmitType::class, array('label'=>'Добавить'));
     }
 
