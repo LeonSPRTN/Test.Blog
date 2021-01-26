@@ -8,7 +8,6 @@ use App\Form\ArticlesFormType;
 use App\Form\CategoryFormType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoriesRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -185,6 +184,7 @@ class EasyAdminCustomController extends AbstractController
 
     /**
      * @Route("/easyadmin-custom/category-update-{id}", name="easy_admin_custom_category_update")
+     * @param Categories $categories
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError

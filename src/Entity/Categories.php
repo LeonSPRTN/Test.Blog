@@ -85,4 +85,24 @@ class Categories
 
         return $this;
     }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->Name,
+            $this->Articles,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->Name,
+            $this->Articles,
+            ) = unserialize($serialized);
+    }
 }
