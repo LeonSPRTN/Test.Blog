@@ -4,8 +4,8 @@ namespace App\Form;
 
 use App\Entity\Articles;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +16,11 @@ class ArticlesFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('id', NumberType::class, array(
+                'attr'=> array(
+                    'id'=>'display_none'
+                )
+            ))
             ->add('Name', TextType::class, array(
                 'label'=> 'Наименование: '
             ))
@@ -25,13 +30,12 @@ class ArticlesFormType extends AbstractType
             ->add('ArticleText', TextareaType::class, array(
                 'label'=> 'Текст: '
             ))
-            ->add('Date', DateType::class, array(
+            ->add('Date', DateTimeType::class, array(
                 'label'=> 'Дата: '
             ))
             ->add('Category', null, array(
                 'label'=> 'Категория: '
             ));
-            //->add('Add', SubmitType::class, array('label'=>'Добавить'));
     }
 
     public function configureOptions(OptionsResolver $resolver)

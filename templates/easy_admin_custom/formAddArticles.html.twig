@@ -2,8 +2,12 @@
 
 {% block title %}EasyAdmin Custom{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    <link href="{{ asset('css/formArticle.css') }}" rel="stylesheet" />
+{% endblock %}
 
+{% block body %}
+    <div id="output"></div>
     <a href="{{ path('easy_admin_custom') }}">Назад</a>
 
     <h1>Добавить Articles</h1>
@@ -13,7 +17,7 @@
     {% if add != 'false' %}
         <button type="submit">Добавить</button>
     {% else %}
-        <button type="button" onclick="updateArticle()">Добавить</button>
+        <button type="submit">Сохранить</button>
     {% endif %}
     {{ form_end(form_add_article) }}
 
