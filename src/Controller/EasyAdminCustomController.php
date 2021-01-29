@@ -8,8 +8,7 @@ use App\Form\ArticlesFormType;
 use App\Form\CategoryFormType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoriesRepository;
-use DateTime;
-use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,63 +20,39 @@ use Twig\Error\SyntaxError;
 
 class EasyAdminCustomController extends AbstractController
 {
-    /**
-     * @var Environment
-     */
-    private $twig;
+    private Environment $twig;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var ArticlesRepository
-     */
-    private $articlesRepository;
-
-    /**
-     * @var CategoriesRepository
-     */
-    private $categoriesRepository;
-
-    public function __construct(Environment $twig, ArticlesRepository $articlesRepository, CategoriesRepository $categoriesRepository, EntityManagerInterface $entityManager)
+    public function __construct(Environment $twig)
     {
         $this->twig = $twig;
-        $this->articlesRepository = $articlesRepository;
-        $this->categoriesRepository = $categoriesRepository;
-        $this->entityManager = $entityManager;
     }
 
     /**
      * @Route("/easyadmin-custom", name="easy_admin_custom")
+     * @param ArticlesRepository $articlesRepository
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function indexArticles(): Response
+    public function indexArticles(ArticlesRepository $articlesRepository): Response
     {
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
-            'articles' => $this->entityManager->createQueryBuilder()
-                ->select('a')
-                ->from('App:Articles', 'a')
-                ->orderBy('a.Date', 'DESC')
-                ->getQuery()
-                ->execute(),
+            'articles' => $articlesRepository->findAll(),
             'key' => 'articles',
         ]));
     }
 
     /**
      * @Route("/easyadmin-custom/articles-add", name="easy_admin_custom_articles_add")
+     * @param ArticlesRepository $articlesRepository
      * @param Request $request
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function articlesFromAdd(Request $request): Response
+    public function articlesFromAdd(ArticlesRepository $articlesRepository, Request $request): Response
     {
         $articles = new Articles();
         $form = $this->createForm(ArticlesFormType::class, $articles);
@@ -89,7 +64,7 @@ class EasyAdminCustomController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('easy_admin_custom', [
-                'articles' => $this->articlesRepository->findAll(),
+                'articles' => $articlesRepository->findAll(),
                 'key' => 'articles',
             ]);
         }
@@ -102,32 +77,30 @@ class EasyAdminCustomController extends AbstractController
 
     /**
      * @Route("/easyadmin-custom/categories", name="easy_admin_custom_categories")
+     * @param CategoriesRepository $categoriesRepository
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function indexCategory(): Response
+    public function indexCategory(CategoriesRepository $categoriesRepository): Response
     {
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
-            'categories' => $this->entityManager->createQueryBuilder()
-                ->select('c')
-                ->from('App:Categories', 'c')
-                ->getQuery()
-                ->execute(),
+            'categories' => $categoriesRepository->findAll(),
             'key' => 'categories',
         ]));
     }
 
     /**
      * @Route("/easyadmin-custom/categories-add", name="easy_admin_custom_categories-add")
-     * @param Request $request
+     * @param CategoriesRepository $categoriesRepository
+     * @param $request
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function categoryFormAdd(Request $request): Response
+    public function categoryFormAdd(CategoriesRepository $categoriesRepository, Request $request): Response
     {
         $categories = new Categories();
         $form = $this->createForm(CategoryFormType::class, $categories);
@@ -139,11 +112,7 @@ class EasyAdminCustomController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('easy_admin_custom_categories', [
-                'articles' => $this->entityManager->createQueryBuilder()
-                    ->select('c')
-                    ->from('App:Categories', 'c')
-                    ->getQuery()
-                    ->execute(),
+                'articles' => $categoriesRepository->findAll(),
                 'key' => 'categories',
             ]);
         }
@@ -156,40 +125,42 @@ class EasyAdminCustomController extends AbstractController
 
     /**
      * @Route("/easyadmin-custom/articles-del-id-{id}", name="easy_admin_custom_articles_delete")
+     * @param ArticlesRepository $articlesRepository
      * @param Articles $articles
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function articleDelete(Articles $articles): Response
+    public function articleDelete(ArticlesRepository $articlesRepository, Articles $articles): Response
     {
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($articles);
         $manager->flush();
 
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
-            'articles' => $this->articlesRepository->findAll(),
+            'articles' => $articlesRepository->findAll(),
             'key' => 'articles',
         ]));
     }
 
     /**
      * @Route("/easyadmin-custom/category-del-id-{id}", name="easy_admin_custom_category_delete")
+     * @param CategoriesRepository $categoriesRepository
      * @param Categories $categories
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function categoryDelete(Categories $categories): Response
+    public function categoryDelete(CategoriesRepository $categoriesRepository, Categories $categories): Response
     {
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($categories);
         $manager->flush();
 
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
-            'categories' => $this->categoriesRepository->findAll(),
+            'categories' => $categoriesRepository->findAll(),
             'key' => 'categories',
         ]));
     }
@@ -204,11 +175,7 @@ class EasyAdminCustomController extends AbstractController
      */
     public function articleUpdate(Articles $articles): Response
     {
-        $form = $this->createForm(ArticlesFormType::class, $articles, array(
-             'attr'=> array(
-                'class' => 'form-ajax-update-article'
-            )
-        ));
+        $form = $this->createForm(ArticlesFormType::class, $articles);
 
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
             'form_add_article' => $form->createView(),
@@ -217,36 +184,7 @@ class EasyAdminCustomController extends AbstractController
     }
 
     /**
-     * @Route("/easyadmin-custom/update-article", name="easyadmin-custom-update-article")
-     * @return Response
-     */
-    public function articleUpdatePost(): Response
-    {
-        $param = $_POST['articles_form'];
-
-        $article = $this->entityManager->getRepository(Articles::class)->find($param['id']);
-
-        $hour = (int)$param['Date']['time']['hour'];
-        $minute = (int)$param['Date']['time']['minute'];
-        $month = (int)$param['Date']['date']['month'];
-        $day = (int)$param['Date']['date']['day'];
-        $year = (int)$param['Date']['date']['year'];
-
-        $datetime = date('YmdHi',mktime($hour, $minute, null, $month, $day, $year));
-
-        $article->setName($param['Name'])
-            ->setDate(new DateTime($datetime))
-            ->setArticleText($param['ArticleText'])
-            ->setHeadline($param['Headline'])
-            ->setCategory($this->entityManager->getRepository(Categories::class)->find($param['Category']));
-        $this->entityManager->flush();
-
-        return new Response();
-    }
-
-    /**
      * @Route("/easyadmin-custom/category-update-{id}", name="easy_admin_custom_category_update")
-     * @param Categories $categories
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
@@ -254,32 +192,11 @@ class EasyAdminCustomController extends AbstractController
      */
     public function categoryUpdate(Categories $categories): Response
     {
-        $form = $this->createForm(CategoryFormType::class, $categories, array(
-            'attr'=> array(
-                'class' => 'form-ajax-update-category'
-            )
-        ));
+        $form = $this->createForm(CategoryFormType::class, $categories);
 
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
             'form_add_article' => $form->createView(),
             'add' => 'false',
         ]));
     }
-
-    /**
-     * @Route("/easyadmin-custom/update-category", name="easyadmin-custom-update-category")
-     * @return Response
-     */
-    public function categoryUpdatePost(): Response
-    {
-        $param = $_POST['category_form'];
-
-        /*$article = $this->entityManager->getRepository(Categories::class)->find($param['id']);
-
-        $article->setName($param['Name']);
-        $this->entityManager->flush();*/
-
-        return new Response();
-    }
-
 }
