@@ -2,23 +2,34 @@
 
 {% block title %}EasyAdmin Custom{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+{% endblock %}
 
-    <a href="{{ path('easy_admin_custom') }}">Назад</a>
+{% block body %}
+    <div id="output"></div>
+    <a href="{{ path('easyadmin_custom_article') }}">Назад</a>
 
     <h1>Добавить Articles</h1>
 
     {{ form_start(form_add_article) }}
+    {{ form_row(form_add_article.id, {
+        'attr':
+            {'class':'id-display-none'},
+        'label_attr':{'class':'id-display-none'}
+    }) }}
     {{ form_widget(form_add_article) }}
+
     {% if add != 'false' %}
         <button type="submit">Добавить</button>
     {% else %}
-        <button type="button" onclick="updateArticle()">Добавить</button>
+        <button type="submit">Сохранить</button>
     {% endif %}
+
     {{ form_end(form_add_article) }}
 
     {% block javascripts %}
-        <script src="{{ asset('js/eventFormUpdateRecord.js') }}"></script>
+        <script src="{{ asset('/js/ArticleForm/eventUpdate.js') }}"></script>
     {% endblock %}
 
 {% endblock %}

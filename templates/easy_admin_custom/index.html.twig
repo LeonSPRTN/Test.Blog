@@ -10,14 +10,15 @@
 
     <h1>EasyAdmin Custom</h1>
 
-    <a href="{{ path('easy_admin_custom') }}">Articles</a>
-    <a href="{{ path('easy_admin_custom_categories') }}">Categories</a>
+    <a href="{{ path('easyadmin_custom_article') }}">Articles</a>
+    <a href="{{ path('easyadmin_custom_category') }}">Categories</a>
 
-    <h2>Articles</h2>
+    {% if key == 'article' %}
 
-    {% if key == 'articles' %}
+        <h2>Articles</h2>
+
         <input class="alert-info" type="button" value="Добавить Articles"
-               onclick="location.href='{{ path("easy_admin_custom_articles_add") }}'"/>
+               onclick="location.href='{{ path("easyadmin_custom_articles_create") }}'"/>
 
         <table border="1">
             <tr>
@@ -35,17 +36,20 @@
                     <th>{{ article.Category }}</th>
                     <th>{{ article.getDate()|date('Y-m-d H:i:s') }}</th>
                     <th>{{ article.ArticleText }}</th>
-                    <th><a href="{{ path('easy_admin_custom_article_update', { id: article.id }) }}">Изменить</a></th>
-                    <th><a href="{{ path('easy_admin_custom_articles_delete', { id: article.id }) }}">Удалить</a></th>
+                    <th><a href="{{ path('easyadmin_custom_article_update', { id: article.id }) }}">Изменить</a></th>
+                    <th><a href="{{ path('easyadmin_custom_articles_delete', { id: article.id }) }}">Удалить</a></th>
 
                 </tr>
             {% endfor %}
 
         </table>
 
-    {% elseif key == 'categories' %}
+    {% elseif key == 'category' %}
+
+        <h2>Category</h2>
+
         <input class="alert-info" type="button" value="Добавить Categories"
-               onclick="location.href='{{ path("easy_admin_custom_categories-add") }}'"/>
+               onclick="location.href='{{ path("easyadmin_custom_category-create") }}'"/>
 
         <table border="1">
             <tr>
@@ -55,8 +59,8 @@
             {% for category in categories %}
                 <tr>
                     <th>{{ category.Name }}</th>
-                    <th><a href="{{ path('easy_admin_custom_category_update', { id: category.id }) }}">Изменить</a></th>
-                    <th><a href="{{ path('easy_admin_custom_category_delete', { id: category.id }) }}">Удалить</a></th>
+                    <th><a href="{{ path('easyadmin_custom_category_update', { id: category.id }) }}">Изменить</a></th>
+                    <th><a href="{{ path('easyadmin_custom_category_delete', { id: category.id }) }}">Удалить</a></th>
                 </tr>
             {% endfor %}
 

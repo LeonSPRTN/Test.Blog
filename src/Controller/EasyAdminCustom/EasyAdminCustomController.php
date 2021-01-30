@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\EasyAdminCustom;
 
-use App\Entity\Articles;
 use App\Repository\ArticlesRepository;
+use App\Repository\CategoriesRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class BlogController extends AbstractController
+class EasyAdminCustomController extends AbstractController
 {
     /**
      * @var Environment
@@ -32,15 +33,15 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/", name="app_homepage")
+     * @Route("/easyadmin-custom/article", name="easyadmin_custom_article")
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function index(): Response
+    public function indexArticles(): Response
     {
-        return new Response($this->twig->render('blog/index.html.twig', [
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
             'articles' => $this->entityManager
                 ->createQueryBuilder()
                 ->select('a')
@@ -48,21 +49,38 @@ class BlogController extends AbstractController
                 ->orderBy('a.Date', 'DESC')
                 ->getQuery()
                 ->execute(),
+            'key' => 'article',
         ]));
     }
 
     /**
-     * @Route("/blog/{id}", name="blog")
-     * @param Articles $articles
+     * @Route("/easyadmin-custom/category", name="easyadmin_custom_category")
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function show(Articles $articles): Response
+    public function indexCategory( ): Response
     {
-        return new Response($this->twig->render('blog/show.html.twig', [
-            'article' => $articles,
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            'categories' => $this->entityManager
+                ->createQueryBuilder()
+                ->select('c')
+                ->from('App:Categories', 'c')
+                ->orderBy('c.Name', 'DESC')
+                ->getQuery()
+                ->execute(),
+            'key' => 'category',
         ]));
     }
+
+
+
+
+
+
+
+
+
+
 }

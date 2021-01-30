@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Controller;
 
-use App\Repository\CategoriesRepository;
-use Doctrine\ORM\EntityManager;
+namespace App\Controller\EasyAdminCustom\Article;
+
+
+use App\Entity\Articles;
+use App\Repository\ArticlesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +16,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 
-class CategoriesController extends AbstractController
+class DeleteController extends AbstractController
 {
     /**
      * @var Environment
@@ -33,21 +35,27 @@ class CategoriesController extends AbstractController
     }
 
     /**
-     * @Route("/categories", name="categories")
+     * @Route("/easyadmin-custom/article-delete/{id}", name="easyadmin_custom_articles_delete")
+     * @param Articles $articles
      * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function index(): Response
+    public function articleDelete(Articles $articles): Response
     {
-        return new Response($this->twig->render('categories/index.html.twig', [
-            'categories' => $this->entityManager
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($articles);
+        $manager->flush();
+
+        return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            'articles' => $this->entityManager
                 ->createQueryBuilder()
-                ->select('c')
-                ->from('App:Categories', 'c')
+                ->select('a')
+                ->from('App:Articles', 'a')
                 ->getQuery()
                 ->execute(),
+            'key' => 'article',
         ]));
     }
 }

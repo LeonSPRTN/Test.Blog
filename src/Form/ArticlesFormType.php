@@ -14,13 +14,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArticlesFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options):void
     {
         $builder
             ->add('id', NumberType::class, array(
-                'attr'=> array(
-                    'id'=>'display_none'
-                )
+                'required'=> false
             ))
             ->add('Name', TextType::class, array(
                 'label'=> 'Наименование: '
@@ -39,7 +37,7 @@ class ArticlesFormType extends AbstractType
             ));
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver):void
     {
         $resolver->setDefaults([
             'data_class' => Articles::class,
