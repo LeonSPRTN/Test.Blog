@@ -68,6 +68,11 @@ class UpdateController extends AbstractController
     {
         $articleForm = $request->get('articles_form');
 
+        // Можно вот так получить post  переменные
+        //$request->request->get('articles_form');
+
+        // а  вот так получить get  переменные
+        //$request->query->get('articles_form');
         $date = $articleForm['Date'];
 
         $dateTime = new \DateTime();
