@@ -80,6 +80,9 @@ class UpdateController extends AbstractController
         $dateTime->setTime($date['time']['hour'], $date['time']['minute'], null);
         $dateTime->format('YmdHis');
 
+        /**
+         * TODO переименовать все сущности в единственное число - так ты можешь делать себе пометки в PHPStorm , если что то не доделал.
+         */
         $article = $this->entityManager->getRepository(Articles::class)->find($articleForm['id']);
         $article->setName($articleForm['Name']);
         $article->setHeadline($articleForm['Headline']);
