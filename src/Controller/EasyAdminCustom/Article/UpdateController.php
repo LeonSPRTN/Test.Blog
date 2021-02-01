@@ -9,6 +9,7 @@ use App\Entity\Categories;
 use App\Form\ArticlesFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
@@ -58,12 +59,14 @@ class UpdateController extends AbstractController
 
     /**
      * @Route("/easyadmin-custom/article-update-ajax")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return Response
      * @throws \Exception
      */
-    public function updateArticle(): Response
+    public function updateArticle(Request $request): Response
     {
-        $articleForm = $_REQUEST['articles_form'];
+        $articleForm = $request->get('articles_form');
 
         $datetime = date('YmdHis',mktime((int)$articleForm['Date']['time']['hour'], (int)$articleForm['Date']['time']['minute'], null,
             (int)$articleForm['Date']['date']['month'], (int)$articleForm['Date']['date']['day'], (int)$articleForm['Date']['date']['year']) );
