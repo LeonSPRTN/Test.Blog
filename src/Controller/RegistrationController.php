@@ -30,6 +30,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+//            TODO выдели в отдельный сервис
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,

@@ -26,6 +26,7 @@ class Categories
 
     /**
      * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="Category")
+     *
      */
     private $Articles;
 
@@ -64,6 +65,10 @@ class Categories
         return $this->Articles;
     }
 
+    /**
+     * @param \App\Entity\Articles $article
+     * @return $this
+     */
     public function addArticle(Articles $article): self
     {
         if (!$this->Articles->contains($article)) {

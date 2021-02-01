@@ -35,6 +35,7 @@ class DeleteController extends AbstractController
     }
 
     /**
+     * TODO - у Route - старайся писать типы возможных запросов например @Route(methods={"GET"})
      * @Route("/easyadmin-custom/article-delete/{id}", name="easyadmin_custom_articles_delete")
      * @param Articles $articles
      * @return Response
@@ -44,11 +45,15 @@ class DeleteController extends AbstractController
      */
     public function articleDelete(Articles $articles): Response
     {
+        /**
+         * TODO - выдели свю обработку Article в отдельный сервис
+         */
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($articles);
         $manager->flush();
 
         return new Response($this->twig->render('easy_admin_custom/index.html.twig', [
+            // TODO - никогда так не пиши, не делай QB при передаче в функцию сделай отдельной переменной $articles = $this-> ...
             'articles' => $this->entityManager
                 ->createQueryBuilder()
                 ->select('a')

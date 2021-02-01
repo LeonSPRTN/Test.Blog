@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ *
+ * TODO - прописывай всегда полный Namespace до репозитория и по возможности указывай @ORM\Table(name="article") - имя таблицы
  */
 class Articles
 {
@@ -19,6 +21,7 @@ class Articles
 
     /**
      * @ORM\Column(type="string", length=25)
+     * TODO - указывай всегда типы данных в аннтациях, например @var string, все имена переменных обязательно с маленькой буквы
      */
     private $Name;
 

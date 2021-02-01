@@ -50,11 +50,13 @@ class CreateController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // TODO - выдели обработку в отдельный сервис - например ArticleHandler
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($articles);
             $manager->flush();
 
             return $this->redirectToRoute('easyadmin_custom_article', [
+                // TODO - никогда так не пиши, не делай QB при передаче в функцию сделай отдельной переменной $articles = $this-> ...
                 'articles' => $this->entityManager
                     ->createQueryBuilder()
                     ->select('a')

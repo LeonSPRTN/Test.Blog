@@ -17,7 +17,10 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-
+/**
+ * TODO - по возможности пиши везде аннотации и описания
+ * Update controller
+ */
 class UpdateController extends AbstractController
 {
     /**
@@ -51,6 +54,9 @@ class UpdateController extends AbstractController
                 'class'=>'form-ajax-update-article')
         ));
 
+        /**
+         * TODO - шаблоны переименуй в единственное число, подумай как можно разделить этот функционал чтобы не через флаг рендерились  разные формы
+         */
         return new Response($this->twig->render('easy_admin_custom/formAddArticles.html.twig', [
             'form_add_article' => $form->createView(),
             'add' => 'false',
@@ -60,7 +66,7 @@ class UpdateController extends AbstractController
     /**
      * @Route("/easyadmin-custom/article-update-ajax")
      * @param \Symfony\Component\HttpFoundation\Request $request
-     *
+     * TODO тут посмотри мои пометки
      * @return Response
      * @throws \Exception
      */
@@ -83,11 +89,19 @@ class UpdateController extends AbstractController
         /**
          * TODO переименовать все сущности в единственное число - так ты можешь делать себе пометки в PHPStorm , если что то не доделал.
          */
+
+        /**
+         * TODO - тут сделай получение сущностей через QueryBuilder
+         */
         $article = $this->entityManager->getRepository(Articles::class)->find($articleForm['id']);
         $article->setName($articleForm['Name']);
         $article->setHeadline($articleForm['Headline']);
         $article->setDate($dateTime);
         $article->setArticleText($articleForm['ArticleText']);
+
+        /**
+         * TODO - тут сделай получение сущностей через QueryBuilder
+         */
         $article->setCategory($this->entityManager->getRepository(Categories::class)->find($articleForm['Category']));
         $this->entityManager->flush();
 
