@@ -68,13 +68,17 @@ class UpdateController extends AbstractController
     {
         $articleForm = $request->get('articles_form');
 
-        $datetime = date('YmdHis',mktime((int)$articleForm['Date']['time']['hour'], (int)$articleForm['Date']['time']['minute'], null,
-            (int)$articleForm['Date']['date']['month'], (int)$articleForm['Date']['date']['day'], (int)$articleForm['Date']['date']['year']) );
+        $date = $articleForm['Date'];
+
+        $dateTime = new \DateTime();
+        $dateTime->setDate($date['date']['year'],$date['date']['month'],$date['date']['day'] );
+        $dateTime->setTime($date['time']['hour'], $date['time']['minute'], null);
+        $dateTime->format('YmdHis');
 
         $article = $this->entityManager->getRepository(Articles::class)->find($articleForm['id']);
         $article->setName($articleForm['Name']);
         $article->setHeadline($articleForm['Headline']);
-        $article->setDate(new \DateTime($datetime));
+        $article->setDate($dateTime);
         $article->setArticleText($articleForm['ArticleText']);
         $article->setCategory($this->entityManager->getRepository(Categories::class)->find($articleForm['Category']));
         $this->entityManager->flush();
